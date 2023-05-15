@@ -1,2 +1,2 @@
 # cinema_tickets
-Website for buying cinema tickets project.
+App for buying cinema tickets.
