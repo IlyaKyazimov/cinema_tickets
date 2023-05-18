@@ -1,0 +1,152 @@
+.navbar-brand {
+    font-size: 25px;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    top: 0;
+    width: 100%;
+}
+
+.date-btns {
+    text-align: center;
+}
+
+.date {
+    display: inline-block;
+    margin-right: 11px;
+    font-size: 20px; 
+}
+
+.date input {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 145px;
+}
+
+.today-btn, .tomorrow-btn, .weekend-btn {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 11px;
+    margin-bottom: 8px;
+}
+
+.range-value {
+    background-color: white;
+    border: solid;
+    width: 20%;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.age-rating-range {
+    cursor: pointer;
+    width: 100%;
+}
+
+.age-rating {
+    margin-bottom: 10px;
+}
+
+.min-range {
+    font-weight: bold;
+}
+
+.max-range {
+    font-weight: bold;
+    float: right;
+}
+
+.filter-btns {
+    justify-content: center;
+}
+
+.apply-btn {
+    margin-right: 5px;
+}
+
+.apply-btn, .clear-btn {
+    padding-left: 27px;
+    padding-right: 27px;
+}
+
+.cart-btn {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.mainContent {
+    
+}
+
+.row-flex {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+.filter {
+    background-color: rgb(196, 185, 185);
+    color: black;
+}
+
+.filter h3 {
+    margin-top: 70px;
+}
+
+.variants {
+    background-color: white;
+    border: solid;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.col-sm-10 {
+    background-color: bisque;
+}
+
+aside {
+    border-right: solid 0.2rem;
+}
+
+.movies-date {
+    margin-bottom: 2rem;
+    margin-top: 70px;
+}
+
+.movie-item {
+    margin-bottom: 30px;
+}
+
+img {
+    min-height: 225px;
+    border-radius: 2rem;
+    border: solid;
+}
+
+footer {
+    /* background-color: #37bc8c; */
+    background-color: #333;
+    color: white;
+    height: auto;
+    width: 100%;
+    min-height: 10rem;
+}
+
+footer h3 {
+    padding-top: 15px;
+}
+
+.contact-icons {
+    margin-top: 25px;
+}
+
+.icon-facebook, .icon-telegram, .icon-twitter {
+    margin-right: 50px;
+}
+
+.icon-facebook:hover, .icon-telegram:hover, .icon-twitter:hover, .icon-instagram:hover {
+    cursor: pointer;
+    color: rgb(5, 142, 247);
+}
