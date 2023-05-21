@@ -12,14 +12,16 @@ app.get("/films", function(request, response) {
     response.sendFile('index.html', {root: __dirname })
 })
 
+app.use("/:movieName", router);
+
 // получаем все сеансы для выбранного фильма
-app.get("/:movieName/seances", function(request, response){
+router.get("/seances", function(request, response){
      
     response.send("<h1>Seances</h1>");
 });
  
 // получаем места на сеансе
-app.get("/:movieName/:seanceCinema/:seanceDate/places", function(request, response){
+router.get("/:seanceCinema/:seanceDate/places", function(request, response){
      
     response.send("<h1>Places</h1>");
 });
