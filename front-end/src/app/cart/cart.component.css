@@ -1,0 +1,57 @@
+/* Cart */
+
+.pay-btn {
+    margin-right: 5px;
+    width: 100%;
+    color: white;
+    padding-left: 27px;
+    padding-right: 27px;
+    margin-bottom: 20px;
+}
+
+.sum h5 {
+    margin-top: 80px;
+}
+
+.all-films-btn {
+    padding: 10px 45px;
+    margin-top: 80px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.order {
+    background-color: rgb(232, 227, 232);
+    border: solid;
+    margin-bottom: 25px;
+}
+
+.order-seance-info {
+    background-color: rgb(132, 128, 132);
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.tickets {
+    margin-bottom: 10px;
+}
+
+.ticket {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-place {
+    display: inline-block;
+}
+
+.ticket-price {
+    display: inline-block;
+    margin-right: 20px;
+}
