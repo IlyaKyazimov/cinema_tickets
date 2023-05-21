@@ -1,0 +1,57 @@
+/* Seances */
+
+.all-films-btn {
+    padding: 10px 45px;
+    margin-top: 80px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.movie-description {
+    background-color: white;
+    border: solid;
+    padding: 15px;
+    max-width: 55%;
+}
+
+.seance {
+    background-color: rgb(232, 227, 232);
+    border: solid;
+    margin-bottom: 25px;
+    max-width: 55%;
+}
+
+.cinema-info {
+    background-color: rgb(132, 128, 132);
+    color: white;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.price-btn {
+    padding: 3px 15px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.price-btn span {
+    display: block;
+}
+
+.time {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.low-price {
+    background-color: blue;
+    margin-left: 20px;
+}
+
+.middle-price {
+    background-color: green;
+}
+
+.high-price {
+    background-color: rgb(59, 10, 97);
+}
