@@ -18,6 +18,7 @@ const appRoutes: Routes = [
   { path: ':movieName/seances', component: SeancesComponent},
   { path: ':movieName/:seanceCinema/:seanceDate/places', component: PlacesComponent},
   { path: 'cart', component: CartComponent},
+  { path: '**', redirectTo: "films"}
 ];
 
 @NgModule({
