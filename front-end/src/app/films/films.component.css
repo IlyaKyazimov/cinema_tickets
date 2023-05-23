@@ -1,0 +1,18 @@
+
+.movies-date {
+    margin-left: 15px;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.movie-item {
+    display: inline-block;
+    margin-bottom: 30px;
+    margin-left: 15px;
+}
+
+img {
+    min-height: 225px;
+    border-radius: 2rem;
+    border: solid;
+}

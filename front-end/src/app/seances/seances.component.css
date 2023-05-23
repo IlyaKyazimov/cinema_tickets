@@ -2,24 +2,40 @@
 
 .all-films-btn {
     padding: 10px 45px;
-    margin-top: 80px;
+    margin-top: 1rem;
     margin-bottom: 15px;
     font-weight: bold;
+}
+
+.movie-poster-description {
+    margin-top: 13px;
+    margin-bottom: 30px;
 }
 
 .movie-description {
     background-color: white;
     border: solid;
     padding: 15px;
-    max-width: 55%;
+    margin-right: 10px;
+}
+
+.seances {
+    margin-bottom: 100px;
 }
 
 .seance {
     background-color: rgb(232, 227, 232);
     border: solid;
     margin-bottom: 25px;
-    max-width: 55%;
+    margin-right: 8px;
+    max-width: 100%;
 }
+
+/* @media(max-width: 1300px) {
+    .seance {
+        max-width: 100%;
+    }
+} */
 
 .cinema-info {
     background-color: rgb(132, 128, 132);
@@ -31,6 +47,8 @@
 .price-btn {
     padding: 3px 15px;
     margin-bottom: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
     color: white;
 }
 

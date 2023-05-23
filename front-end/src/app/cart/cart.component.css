@@ -1,31 +1,43 @@
 /* Cart */
 
-.pay-btn {
-    margin-right: 5px;
-    width: 100%;
+.pay-btn,
+.cancel-btn {
     color: white;
-    padding-left: 27px;
-    padding-right: 27px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 18rem;
+}
+
+@media(max-width: 991px) {
+    .pay-btn,
+    .cancel-btn {
+        width: 16rem;
+    }
+}
+
+@media(max-width: 720px) {
+    .pay-btn,
+    .cancel-btn {
+        width: 12rem;
+    }
 }
 
 .sum h5 {
-    margin-top: 80px;
+    margin-top: 1rem;
 }
 
 .all-films-btn {
     padding: 10px 45px;
-    margin-top: 80px;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 30px;
     font-weight: bold;
 }
 
 .order {
     background-color: rgb(232, 227, 232);
     border: solid;
-    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
 .order-seance-info {

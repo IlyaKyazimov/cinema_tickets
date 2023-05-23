@@ -1,46 +1,59 @@
 /* Places */
 
-.sum h5 {
-    margin-top: 80px;
+.sum h5, h3 {
+    margin-top: 1rem;
+    margin-left: 15px;
 }
 
 .order-btns {
-    justify-content: center;
-}
-
-.add-btn {
-    margin-right: 5px;
-    width: 100%;
+    margin-top: 15px;
 }
 
 .add-btn,
 .cancel-btn {
     color: white;
-    padding-left: 27px;
-    padding-right: 27px;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 18rem;
+}
+
+@media(max-width: 991px) {
+    .add-btn,
+    .cancel-btn {
+        width: 16rem;
+    }
+}
+
+@media(max-width: 720px) {
+    .add-btn,
+    .cancel-btn {
+        width: 12rem;
+    }
+}
+
+.seance-btn-cinema-info-row {
+    margin-top: 1rem;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .seance-btn {
-    padding: 10px 45px;
-    margin-top: 80px;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    margin-right: 10px;
+    padding: 10px 35px;
+    margin-right: 20px;
     font-weight: bold;
 }
 
 .seance-info {
     display: inline-block;
     background-color: rgb(232, 227, 227);
-    margin-top: 80px;
+    margin-top: 15px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .place-selection-title {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     margin-left: 15px;
 }
 
@@ -49,7 +62,7 @@
     border: solid;
     margin-left: 15px;
     margin-right: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 130px;
 }
 
 .screen {
@@ -63,7 +76,7 @@
 }
 
 .places {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .seats-row {
@@ -80,7 +93,38 @@
     font-size: 20px;
     border-radius: 5px;
     margin-bottom: 5px;
+    margin-right: 1px;
     padding: 10px 20px;
+}
+
+@media (max-width: 1250px) {
+    .seat {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1179px) {
+    .seat {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 1120px) {
+    .seat {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 919px) {
+    .seat {
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 720px) {
+    .seat {
+        padding: 4px 6px;
+    }
 }
 
 .seat:hover {
