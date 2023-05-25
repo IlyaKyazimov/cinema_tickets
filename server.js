@@ -33,3 +33,9 @@ app.get("/cart", function(request, response){
 });
 
 app.listen(port);
+
+const db = require("./back-end/models");
+
+db.sequelize.sync({force: true}).then (() => {
+    console.log(`Drop & resync DB`);
+});
