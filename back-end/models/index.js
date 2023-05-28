@@ -29,15 +29,55 @@ db.sale       = require("./sale.model")(sequelize, Sequelize);
 db.seance     = require("./seance.model")(sequelize, Sequelize);
 db.ticket     = require("./ticket.model")(sequelize, Sequelize);
 
-db.movie.hasOne(db.country, { onDelete: "cascade"});
-db.order.hasOne(db.customer, { onDelete: "cascade"});
-db.order.hasMany(db.sale, { onDelete: "cascade"});
-db.order.hasOne(db.reciept, { onDelete: "cascade"});
-db.placesInfo.hasMany(db.place, { onDelete: "cascade"});
-db.sale.hasOne(db.ticket, { onDelete: "cascade"});
-db.seance.hasOne(db.cinema, { onDelete: "cascade"});
-db.seance.hasOne(db.placesInfo, { onDelete: "cascade"});
-db.seance.hasOne(db.movie, { onDelete: "cascade"});
-db.ticket.hasOne(db.seance, { onDelete: "cascade"});
+db.country.hasMany(db.movie, { 
+  foreignKey: 'countryId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.customer.hasMany(db.order, { 
+  foreignKey: 'customerId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.order.hasMany(db.sale, { 
+  foreignKey: 'orderId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.reciept.hasOne(db.order, { 
+  foreignKey: 'recieptId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.placesInfo.hasMany(db.place, { 
+  foreignKey: 'placesInfoId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.ticket.hasOne(db.sale, { 
+  foreignKey: 'ticketId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.cinema.hasMany(db.seance, { 
+  foreignKey: 'cinemaId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.placesInfo.hasOne(db.seance, { 
+  foreignKey: 'placesInfoId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.movie.hasMany(db.seance, { 
+  foreignKey: 'movieId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
+db.seance.hasMany(db.ticket, { 
+  foreignKey: 'seanceId',
+  targetKey: 'id',
+  onDelete: "cascade"
+});
 
 module.exports = db;
