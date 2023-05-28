@@ -7,35 +7,51 @@ const router = express.Router()
 // app.use("/films", router)
 
 // получаем данные для всех фильмов
-app.get("/films", function(request, response) {
+// app.get("/films", function(request, response) {
 
-    response.sendFile('index.html', {root: __dirname })
-})
+//     response.sendFile('index.html', {root: __dirname })
+// })
 
-app.use("/:movieName", router);
+require("./back-end/routes/movie.routes")(app);
+
+// app.use("/:movieName", router);
 
 // получаем все сеансы для выбранного фильма
-router.get("/seances", function(request, response){
+// router.get("/seances", function(request, response){
      
-    response.send("<h1>Seances</h1>");
-});
+//     response.send("<h1>Seances</h1>");
+// });
  
 // получаем места на сеансе
-router.get("/:seanceCinema/:seanceDate/places", function(request, response){
+// router.get("/:seanceCinema/:seanceDate/places", function(request, response){
      
-    response.send("<h1>Places</h1>");
-});
+//     response.send("<h1>Places</h1>");
+// });
  
 // получаем данные корзины
-app.get("/cart", function(request, response){
+// app.get("/cart", function(request, response){
      
-    response.send("<h1>Cart</h1>");
-});
+//     response.send("<h1>Cart</h1>");
+// });
 
 app.listen(port);
 
 const db = require("./back-end/models");
 
-db.sequelize.sync({force: true}).then (() => {
-    console.log(`Drop & resync DB`);
-});
+//for DEBUG database
+// db.sequelize.sync({force: true}).then (() => {
+//     console.log(`Drop & resync DB`);
+// });
+
+//for RELEASE
+db.sequelize.sync();
+
+// db.seance.create({
+//     date: new Date(2023, 5, 1, 14, 20),
+//     price: 300,
+//     cinemaId: 5,
+//     placesInfoId: 1,
+//     movieId: 1
+//   }).then(res=>{
+//     console.log("ok");
+//   }).catch(err=>console.log(err));
