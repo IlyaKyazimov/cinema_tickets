@@ -6,13 +6,21 @@
 }
 
 .movie-item {
+    position: relative;
     display: inline-block;
     margin-bottom: 30px;
     margin-left: 15px;
 }
 
-img {
-    min-height: 225px;
-    border-radius: 2rem;
-    border: solid;
+.movie-item img {
+    border: solid black;
+}
+
+.movie-info {
+    position: absolute;
+    padding: 7px;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
 }
