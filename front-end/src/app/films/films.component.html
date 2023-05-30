@@ -91,12 +91,12 @@
                     
                     <div class="row">
                         
-                        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-                            <a href="/shrek/seances" class="movie-item">
-                                <img src="assets/movies/shrek.jpeg" class="img-fluid">
+                        <div *ngFor="let movie of movies" class="col-12 col-sm-6 col-md-4 col-xl-3">
+                            <a href="/{{movie.name}}/seances" class="movie-item">
+                                <img src="assets/movies/{{movie.name}}.jpg" class="img-fluid">
                                 <div class="movie-info">
-                                    <h4>Shrek</h4>
-                                    <p>Cartoon, 0+, USA</p>
+                                    <h4>{{movie.name}}</h4>
+                                    <p>{{movie.genre}}, {{movie.ageRating}}, {{movie.country.name}}</p>
                                 </div>
                             </a>
                         </div>
