@@ -2,7 +2,12 @@ const db = require("../models");
 const Movie = db.movie;
 
 exports.findAll = (req, res) => {
-    Movie.findAll()
+    Movie.findAll({
+        include: [{
+            model: db.country,
+            attributes: ["name"]  
+          }],
+    })
         .then(data => {
             console.log(data);
             res.status(200).send(data);
