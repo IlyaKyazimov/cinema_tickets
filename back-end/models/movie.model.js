@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { Sequelize } = require("sequelize");
+const db = require("../models");
 
 module.exports = (sequelize, Sequelize) => {
     const Movie = sequelize.define("movies", {
@@ -42,6 +43,13 @@ module.exports = (sequelize, Sequelize) => {
         rating: {
             type: DataTypes.FLOAT,
             allowNull: false
+        },
+        countryId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: db.country,
+                key: "id"
+            }
         }
     });
 
