@@ -3,6 +3,14 @@ const app = express()
 const port = process.env.PORT || 3000
 const router = express.Router()
 
+// настройка CORS
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    next();
+  });
+
 // app.use(express.static(__dirname + '/films'))
 // app.use("/films", router)
 
@@ -46,12 +54,16 @@ const db = require("./back-end/models");
 //for RELEASE
 db.sequelize.sync();
 
-// db.seance.create({
-//     date: new Date(2023, 5, 1, 14, 20),
-//     price: 300,
-//     cinemaId: 5,
-//     placesInfoId: 1,
-//     movieId: 1
+// db.movie.create({
+//     name: "Batman vs Superman: Dawn of Justice",
+//     description: "Fearing that the god-like superhero's actions will remain out of control, Gotham City's fearsome and powerful guardian takes on Metropolis' most revered savior today, while the rest of the world decides which hero it truly needs. And while Batman and Superman are at war with each other, a new threat is emerging that puts humanity in the greatest danger it has ever faced.",
+//     ageRating: "16+",
+//     genre: "Drama",
+//     startDate: new Date(2023, 2, 12),
+//     finishDate: new Date(2023, 5, 29),
+//     duration: "02:33",
+//     rating: 6.8,
+//     countryId: 2
 //   }).then(res=>{
 //     console.log("ok");
 //   }).catch(err=>console.log(err));
