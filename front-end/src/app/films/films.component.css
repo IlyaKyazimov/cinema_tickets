@@ -6,21 +6,49 @@
 }
 
 .movie-item {
-    position: relative;
-    display: inline-block;
     margin-bottom: 30px;
-    margin-left: 15px;
 }
 
-.movie-item img {
+.movie-card {
     border: solid black;
+    text-decoration: none;
+}
+
+.movie-card:hover {
+    border: 5px solid #ffd25e;
+    cursor: pointer;
+}
+
+.card-img-top {
+    height: 30vw;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.89);
+    color: #ffd25e;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 7px;
+    margin-top: 7px;
 }
 
 .movie-info {
-    position: absolute;
-    padding: 7px;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    width: 100%;
+    font-size: 1rem;
+    margin-left: 7px;
+}
+
+@media(max-width: 750px) {
+    .movie-title {
+        font-size: 0.8rem;
+    }
+
+    .movie-info {
+        font-size: 0.6rem;
+    }
 }
