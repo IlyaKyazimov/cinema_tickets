@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         genre: {
-            type: DataTypes.ENUM("Cartoon", "Drama", "Comedy", "Thriller"),
+            type: DataTypes.ENUM("Cartoon", "Drama", "Comedy", "Thriller", "Fantasy", "Action", "Adventure"),
             allowNull: false
         },
         startDate: {
