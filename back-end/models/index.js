@@ -36,54 +36,63 @@ db.country.hasMany(db.movie, {
   onDelete: "cascade"
 });
 
+db.order.belongsTo(db.customer, { foreignKey: "customerId", targetKey: 'id' });
 db.customer.hasMany(db.order, { 
   foreignKey: 'customerId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.sale.belongsTo(db.order, { foreignKey: "orderId", targetKey: 'id' });
 db.order.hasMany(db.sale, { 
   foreignKey: 'orderId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.order.belongsTo(db.reciept, { foreignKey: "recieptId", targetKey: 'id' });
 db.reciept.hasOne(db.order, { 
   foreignKey: 'recieptId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.place.belongsTo(db.placesInfo, { foreignKey: "placesInfoId", targetKey: 'id' });
 db.placesInfo.hasMany(db.place, { 
   foreignKey: 'placesInfoId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.sale.belongsTo(db.ticket, { foreignKey: "ticketId", targetKey: 'id' });
 db.ticket.hasOne(db.sale, { 
   foreignKey: 'ticketId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.seance.belongsTo(db.cinema, { foreignKey: "cinemaId", targetKey: 'id' });
 db.cinema.hasMany(db.seance, { 
   foreignKey: 'cinemaId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.seance.belongsTo(db.placesInfo, { foreignKey: "placesInfoId", targetKey: 'id' });
 db.placesInfo.hasOne(db.seance, { 
   foreignKey: 'placesInfoId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.seance.belongsTo(db.movie, { foreignKey: "movieId", targetKey: 'id' });
 db.movie.hasMany(db.seance, { 
   foreignKey: 'movieId',
   targetKey: 'id',
   onDelete: "cascade"
 });
 
+db.ticket.belongsTo(db.seance, { foreignKey: "seanceId", targetKey: 'id' });
 db.seance.hasMany(db.ticket, { 
   foreignKey: 'seanceId',
   targetKey: 'id',
