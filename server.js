@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 // })
 
 require("./back-end/routes/movie.routes")(app);
-
+require("./back-end/routes/seance.routes")(app);
 // app.use("/:movieName", router);
 
 // получаем все сеансы для выбранного фильма
@@ -54,16 +54,21 @@ const db = require("./back-end/models");
 //for RELEASE
 db.sequelize.sync();
 
-// db.movie.create({
-//     name: "Batman vs Superman: Dawn of Justice",
-//     description: "Fearing that the god-like superhero's actions will remain out of control, Gotham City's fearsome and powerful guardian takes on Metropolis' most revered savior today, while the rest of the world decides which hero it truly needs. And while Batman and Superman are at war with each other, a new threat is emerging that puts humanity in the greatest danger it has ever faced.",
-//     ageRating: "16+",
-//     genre: "Drama",
-//     startDate: new Date(2023, 2, 12),
-//     finishDate: new Date(2023, 5, 29),
-//     duration: "02:33",
-//     rating: 6.8,
-//     countryId: 2
+// db.seance.create({
+//     date: new Date(2023, 5, 2),
+//     time: "11:40",
+//     price: 400,
+//     cinemaId: 1,
+//     placesInfoId: 3,
+//     movieId: 1
+//   }).then(res=>{
+//     console.log("ok");
+//   }).catch(err=>console.log(err));
+
+// db.placesInfo.create({
+//     total: 64,
+//     free: 55,
+//     busy: 9
 //   }).then(res=>{
 //     console.log("ok");
 //   }).catch(err=>console.log(err));
