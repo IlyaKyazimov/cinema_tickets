@@ -9,7 +9,7 @@
         <div class="col-sm-7 date-btns">
             <div class="date">
                 <label>Date:</label>
-                <input type="date" name="choose-date" value="2023-05-19">
+                <input type="date" name="choose-date" [(ngModel)]="seanceDate">
             </div>
             <button class="btn btn-info navbar-btn today-btn">Today</button>
             <button class="btn btn-info navbar-btn tomorrow-btn">Tomorrow</button>
@@ -71,14 +71,12 @@
                 <div class="row row-flex movie-poster-description">
                     <div class="col-md-3">
                         <div class="movie-poster">
-                            <img class="img-fluid" src="assets/movies/shrek.jpeg">
+                            <img class="img-fluid" src="assets/movies/{{getImage()}}.jpg" alt="{{movieName}}">
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <h4>Сеансы фильма "Шрек" на 19.05.2023</h4>
-                        <div class="movie-description">A mean lord exiles fairytale creatures to the swamp of a grumpy
-                            ogre, who must go on a quest and rescue a princess for the lord in order to get his land
-                            back.
+                        <h4>Сеансы фильма {{movieName}} на {{seanceDate}}</h4>
+                        <div class="movie-description">{{seancesData ? seancesData[0].movie.description : ""}}
                         </div>
                     </div>
                 </div>
