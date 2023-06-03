@@ -1,7 +1,7 @@
 const controller = require("../controllers/movie.controller");
 
-module.exports = app => {
+module.exports = function(app) {
 
     // Retrieve all Movies
-    app.get("/films", controller.findAll); 
+    app.get("/films", controller.getMovies);
 };
