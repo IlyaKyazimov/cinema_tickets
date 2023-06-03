@@ -16,7 +16,7 @@ body {
 
 footer {
     /* background-color: #37bc8c; */
-    background-color: #333;
+    background-color: #1a1919;
     color: white;
     height: 10rem;
 }
@@ -27,11 +27,11 @@ footer {
 
 header {
     height: 6rem;
-    background-color: #333;
+    background-color: #1a1919;
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #1a1919;
     color: white;
     top: 0;
     height: 6rem;

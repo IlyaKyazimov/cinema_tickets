@@ -14,9 +14,16 @@
 
 .movie-description {
     background-color: white;
+    font-size: 20px;
     border: solid;
     padding: 15px;
     margin-right: 10px;
+}
+
+@media(max-width: 1200px) {
+    .movie-description {
+        font-size: 12px;
+    }
 }
 
 .seances {
@@ -30,12 +37,6 @@
     margin-right: 8px;
     max-width: 100%;
 }
-
-/* @media(max-width: 1300px) {
-    .seance {
-        max-width: 100%;
-    }
-} */
 
 .cinema-info {
     background-color: rgb(132, 128, 132);
