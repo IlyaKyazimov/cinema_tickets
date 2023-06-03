@@ -9,7 +9,7 @@
         <div class="col-sm-7 date-btns">
             <div class="date">
                 <label>Date:</label>
-                <input type="date" name="choose-date" value="2023-05-17">
+                <input type="date" name="choose-date" [(ngModel)]="date">
             </div>
             <button class="btn btn-info navbar-btn today-btn">Today</button>
             <button class="btn btn-info navbar-btn tomorrow-btn">Tomorrow</button>
@@ -82,7 +82,7 @@
                 <h2 class="movies-date">Today at the cinema</h2>
                 <div class="row">
                     <div *ngFor="let movie of movies" class="col-6 col-sm-6 col-md-4 col-xl-3 movie-item">
-                        <a href="/{{movie.name}}/seances" class="card movie-card h-100">
+                        <a href="/{{movie.name}}/{{date}}/seances" class="card movie-card h-100">
                             <div class="card-image">
                                 <img class="card-img-top img-fluid" src="assets/movies/{{getImage(movie.name)}}.jpg"
                                     alt="{{movie.name}}">
