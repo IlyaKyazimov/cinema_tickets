@@ -31,7 +31,7 @@
 }
 
 .cinema {
-    background-color: rgb(232, 227, 232);
+    background-color: rgb(36, 34, 36);
     border: solid;
     margin-bottom: 25px;
     margin-right: 8px;
@@ -48,9 +48,17 @@
 .price-btn {
     padding: 3px 15px;
     margin-bottom: 20px;
-    margin-left: 3px;
+    margin-left: 20px;
     margin-right: 3px;
     color: white;
+    border: solid white;
+    border-radius: 20px;
+}
+
+.price-btn:hover {
+    color: black;
+    background-color: #ffd25e;
+    border-color: #ffd25e;
 }
 
 .price-btn span {
@@ -60,17 +68,4 @@
 .time {
     font-weight: bold;
     font-size: 20px;
-}
-
-.low-price {
-    background-color: blue;
-    margin-left: 20px;
-}
-
-.middle-price {
-    background-color: green;
-}
-
-.high-price {
-    background-color: rgb(59, 10, 97);
 }

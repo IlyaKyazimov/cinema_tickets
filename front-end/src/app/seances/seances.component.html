@@ -29,34 +29,12 @@
                 <h3>Filter</h3>
                 <h5>Cinema</h5>
                 <div class="variants">
-                    <div class="form-check">
+
+                    <div class="form-check" *ngFor="let cinema of cinemasData">
                         <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Пионер</label>
+                        <label class="form-check-label" for="check2">{{cinema.name}}</label>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Иллюзион</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Кинозал ГУМа</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Кино Окко Афимолл Сити</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">5 звезд на Новокузнецкой</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Синема Парк Метрополис</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Каро 6 Будапешт</label>
-                    </div>
+
                 </div>
 
 
@@ -71,7 +49,7 @@
                 <div class="row row-flex movie-poster-description">
                     <div class="col-md-3">
                         <div class="movie-poster">
-                            <img class="img-fluid" src="assets/movies/{{getImage()}}.jpg" alt="{{movieName}}">
+                            <img class="img-fluid" src="assets/movies/{{formatTitle(movieName)}}.jpg" alt="{{movieName}}">
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -85,9 +63,9 @@
                     <div class="cinema" *ngFor="let cinema of cinemasData">
                         <div class="cinema-info">"{{cinema.name}}", {{cinema.address}}</div>
                         <div class="price-btns text-center">
-                            <a href="{{movieName}}/cinemaParkMetropolis/today/places" *ngFor="let seance of cinema.seances" class="btn price-btn low-price">
+                            <a href="{{movieName}}/{{seanceDate}}/{{formatTitle(cinema.name)}}/{{formatSeanceTime(seance.time)}}/places" *ngFor="let seance of cinema.seances" class="btn price-btn">
                                 <span class="time">{{formatSeanceTime(seance.time)}}</span>
-                                <span class="price">{{seance.price}} ₽</span>
+                                <span class="price">{{seance.price}} £</span>
                             </a>
                         </div>
                     </div>
