@@ -19,7 +19,7 @@ export class SeancesComponent implements OnInit {
     this.seanceDate = activateRoute.snapshot.params['seanceDate'];
   }
 
-  getImage = () => this.movieName?.replace(/\*| |:|%|#|&|\$/g,'');
+  formatTitle = (title: string) => title?.replace(/\*| |:|%|#|&|\$/g,'');
 
   formatSeanceTime = (time: string) => time.slice(0, -3);
 
