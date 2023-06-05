@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SeancesComponent implements OnInit {
 
-  seancesData: any;
+  cinemasData: any;
   movieName: string;
   seanceDate: string;
 
@@ -21,7 +21,9 @@ export class SeancesComponent implements OnInit {
 
   getImage = () => this.movieName?.replace(/\*| |:|%|#|&|\$/g,'');
 
+  formatSeanceTime = (time: string) => time.slice(0, -3);
+
   ngOnInit() {
-    this.http.get('http://localhost:3000/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({ next: (data: any) => this.seancesData = data }); // console.log(data)
+    this.http.get('http://localhost:3000/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({ next: (data: any) => this.cinemasData = data }); // console.log(data)
   }
 }
