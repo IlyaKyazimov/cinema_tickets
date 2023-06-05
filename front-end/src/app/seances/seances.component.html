@@ -76,67 +76,22 @@
                     </div>
                     <div class="col-md-9">
                         <h4>Сеансы фильма {{movieName}} на {{seanceDate}}</h4>
-                        <div class="movie-description">{{seancesData ? seancesData[0].movie.description : ""}}
+                        <div class="movie-description">{{cinemasData ? cinemasData[0].seances[0].movie.description : ""}}
                         </div>
                     </div>
                 </div>
-                <div class="seances">
-                    <div class="seance">
-                        <div class="cinema-info">"Синема Парк Метрополис", Ленинградское ш., 16а, стр. 4, ТЦ
-                            «Метрополис»
-                        </div>
+                <div class="cinemas">
+                    
+                    <div class="cinema" *ngFor="let cinema of cinemasData">
+                        <div class="cinema-info">"{{cinema.name}}", {{cinema.address}}</div>
                         <div class="price-btns text-center">
-                            <a href="shrek/cinemaParkMetropolis/today/places" class="btn price-btn low-price">
-                                <span class="time">11:20</span>
-                                <span class="price">300 ₽</span>
+                            <a href="{{movieName}}/cinemaParkMetropolis/today/places" *ngFor="let seance of cinema.seances" class="btn price-btn low-price">
+                                <span class="time">{{formatSeanceTime(seance.time)}}</span>
+                                <span class="price">{{seance.price}} ₽</span>
                             </a>
-                            <button class="btn price-btn middle-price">
-                                <span class="time">11:40</span>
-                                <span class="price">400 ₽</span>
-                            </button>
-                            <button class="btn price-btn high-price">
-                                <span class="time">12:30</span>
-                                <span class="price">490 ₽</span>
-                            </button>
                         </div>
                     </div>
 
-                    <div class="seance">
-                        <div class="cinema-info">"5 звезд на Новокузнецкой", Б.Овчинниковский пер., 16, ТЦ «Аркадия»
-                        </div>
-                        <div class="price-btns text-center">
-                            <a href="shrek/cinemaParkMetropolis/today/places" class="btn price-btn low-price">
-                                <span class="time">11:20</span>
-                                <span class="price">300 ₽</span>
-                            </a>
-                            <button class="btn price-btn middle-price">
-                                <span class="time">11:40</span>
-                                <span class="price">400 ₽</span>
-                            </button>
-                            <button class="btn price-btn high-price">
-                                <span class="time">12:30</span>
-                                <span class="price">490 ₽</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="seance">
-                        <div class="cinema-info">"Пионер", Кутузовский просп., 21</div>
-                        <div class="price-btns text-center">
-                            <a href="shrek/cinemaParkMetropolis/today/places" class="btn price-btn low-price">
-                                <span class="time">11:20</span>
-                                <span class="price">300 ₽</span>
-                            </a>
-                            <button class="btn price-btn middle-price">
-                                <span class="time">11:40</span>
-                                <span class="price">400 ₽</span>
-                            </button>
-                            <button class="btn price-btn high-price">
-                                <span class="time">12:30</span>
-                                <span class="price">490 ₽</span>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
