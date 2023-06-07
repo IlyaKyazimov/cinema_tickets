@@ -63,7 +63,7 @@
                     <div class="cinema" *ngFor="let cinema of cinemasData">
                         <div class="cinema-info">"{{cinema.name}}", {{cinema.address}}</div>
                         <div class="price-btns text-center">
-                            <a href="{{movieName}}/{{seanceDate}}/{{formatTitle(cinema.name)}}/{{formatSeanceTime(seance.time)}}/places" *ngFor="let seance of cinema.seances" class="btn price-btn">
+                            <a href="{{movieName}}/{{seanceDate}}/{{cinema.name}}/{{formatSeanceTime(seance.time)}}/places" *ngFor="let seance of cinema.seances" class="btn price-btn">
                                 <span class="time">{{formatSeanceTime(seance.time)}}</span>
                                 <span class="price">{{seance.price}} £</span>
                             </a>
