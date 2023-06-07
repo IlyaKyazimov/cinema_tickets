@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
 
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
+require("./back-end/routes/place.routes")(app);
 // app.use("/:movieName", router);
 
 // получаем все сеансы для выбранного фильма
@@ -54,21 +55,25 @@ const db = require("./back-end/models");
 //for RELEASE
 db.sequelize.sync();
 
-// db.seance.create({
-//     date: new Date(2023, 5, 2),
-//     time: "11:40",
-//     price: 400,
-//     cinemaId: 1,
-//     placesInfoId: 3,
-//     movieId: 1
-//   }).then(res=>{
-//     console.log("ok");
-//   }).catch(err=>console.log(err));
+// for(let i = 0; i < 7; i++) {
+//   db.seance.create({
+//       date: new Date(2023, 5, 2),
+//       time: "22:10",
+//       price: 300,
+//       cinemaId: i + 1,
+//       placesInfoId: i + 43, // +7
+//       movieId: 1
+//     }).then(res=>{
+//       console.log("ok");
+//     }).catch(err=>console.log(err));
+// } 
 
-// db.placesInfo.create({
+// for(let i = 0; i < 35; i++) {
+//   db.placesInfo.create({
 //     total: 64,
-//     free: 55,
-//     busy: 9
+//     free: 64,
+//     busy: 0
 //   }).then(res=>{
 //     console.log("ok");
 //   }).catch(err=>console.log(err));
+// } 
