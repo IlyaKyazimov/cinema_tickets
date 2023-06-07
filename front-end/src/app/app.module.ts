@@ -19,7 +19,7 @@ import { CartComponent } from './cart/cart.component';
 const appRoutes: Routes = [
   { path: 'films', component: FilmsComponent},
   { path: ':movieName/:seanceDate/seances', component: SeancesComponent},
-  { path: ':movieName/:seanceDate/:seanceCinema/places', component: PlacesComponent},
+  { path: ':movieName/:seanceDate/:seanceCinema/:seanceTime/places', component: PlacesComponent},
   { path: 'cart', component: CartComponent},
   { path: '**', redirectTo: "films"}
 ];
