@@ -18,7 +18,7 @@
             <!-- ASIDE -->
             <aside class="col-12 col-lg-2 col-xl-2 sum">
                 <h5>Your order</h5>
-                <h3>880 ₽</h3>
+                <h3>{{totalSum}} £</h3>
 
                 <div class="row order-btns text-center">
                     <div class="col-6 col-lg-12">
@@ -32,10 +32,8 @@
             <!-- MAIN -->
             <div class="col-12 col-lg-10 col-xl-10 main-content">
                 <div class="seance-btn-cinema-info-row">
-                    <a href="shrek/seances" class="btn btn-primary navbar-btn seance-btn">Seances</a>
-                    <div class="seance-info"><b>Шрек 0+ 19.05.2023 11:40</b> "Синема Парк Метрополис", Ленинградское
-                        ш.,
-                        16а, стр. 4, ТЦ «Метрополис»</div>
+                    <a href="{{movieName}}/{{seanceDate}}/seances" class="btn btn-primary navbar-btn seance-btn">Seances</a>
+                    <div class="seance-info"><b>{{movieName}} 0+ {{seanceDate}} {{seanceTime}}</b> "{{seanceCinema}}", {{cinemaAddress ? cinemaAddress : ''}}</div>
                 </div>
 
                 <h4 class="place-selection-title">Place selection</h4>
@@ -44,81 +42,11 @@
                     <div class="screen">Screen</div>
 
                     <div class="places">
-                        <div class="seats-row">
-                            <div class="seat">1</div>
-                            <div class="seat">2</div>
-                            <div class="seat">3</div>
-                            <div class="seat">4</div>
-                            <div class="seat reserved">5</div>
-                            <div class="seat">6</div>
-                            <div class="seat reserved">7</div>
-                            <div class="seat reserved">8</div>
-                            <div class="seat">9</div>
-                            <div class="seat">10</div>
-                            <div class="seat">11</div>
-                            <div class="seat">12</div>
-                            <div class="seat">13</div>
-                            <div class="seat">14</div>
-                            <div class="seat">15</div>
-                            <div class="seat">16</div>
+
+                        <div class="seats-row" *ngFor="let seatsRow of seatsRows">
+                            <div class="seat {{seat.status}}" *ngFor="let seat of seatsRow" (click)="getPrice()">{{seat.number}}</div>
                         </div>
 
-                        <div class="seats-row">
-                            <div class="seat">1</div>
-                            <div class="seat">2</div>
-                            <div class="seat reserved">3</div>
-                            <div class="seat">4</div>
-                            <div class="seat">5</div>
-                            <div class="seat">6</div>
-                            <div class="seat">7</div>
-                            <div class="seat">8</div>
-                            <div class="seat">9</div>
-                            <div class="seat">10</div>
-                            <div class="seat reserved">11</div>
-                            <div class="seat">12</div>
-                            <div class="seat">13</div>
-                            <div class="seat">14</div>
-                            <div class="seat">15</div>
-                            <div class="seat">16</div>
-                        </div>
-
-                        <div class="seats-row">
-                            <div class="seat">1</div>
-                            <div class="seat">2</div>
-                            <div class="seat">3</div>
-                            <div class="seat">4</div>
-                            <div class="seat">5</div>
-                            <div class="seat">6</div>
-                            <div class="seat">7</div>
-                            <div class="seat">8</div>
-                            <div class="seat">9</div>
-                            <div class="seat reserved">10</div>
-                            <div class="seat">11</div>
-                            <div class="seat">12</div>
-                            <div class="seat">13</div>
-                            <div class="seat">14</div>
-                            <div class="seat">15</div>
-                            <div class="seat">16</div>
-                        </div>
-
-                        <div class="seats-row">
-                            <div class="seat">1</div>
-                            <div class="seat">2</div>
-                            <div class="seat">3</div>
-                            <div class="seat">4</div>
-                            <div class="seat">5</div>
-                            <div class="seat">6</div>
-                            <div class="seat">7</div>
-                            <div class="seat">8</div>
-                            <div class="seat">9</div>
-                            <div class="seat">10</div>
-                            <div class="seat">11</div>
-                            <div class="seat">12</div>
-                            <div class="seat">13</div>
-                            <div class="seat">14</div>
-                            <div class="seat">15</div>
-                            <div class="seat">16</div>
-                        </div>
                     </div>
                 </div>
             </div>
