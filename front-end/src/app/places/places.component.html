@@ -44,7 +44,7 @@
                     <div class="places">
 
                         <div class="seats-row" *ngFor="let seatsRow of seatsRows">
-                            <div class="seat {{seat.status}}" *ngFor="let seat of seatsRow" (click)="getPrice()">{{seat.number}}</div>
+                            <button class="seat {{seat.status}}" *ngFor="let seat of seatsRow" (click)="getPrice(seat)" [disabled]="seat.status == 'Sold' ? true : false">{{seat.number}}</button>
                         </div>
 
                     </div>

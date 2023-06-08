@@ -96,6 +96,10 @@
     padding: 10px 20px;
 }
 
+.seat:focus {
+    outline: none !important;
+}
+
 @media (max-width: 1250px) {
     .seat {
         font-size: 15px;
@@ -126,6 +130,10 @@
     }
 }
 
+.Free {
+    background-color: black;
+}
+
 .Free:hover {
     background-color: #ffd25e;
     color: black;
@@ -139,4 +147,10 @@
 
 .Sold:hover {
     background-color: rgb(132, 128, 132);
+}
+
+.Reserved {
+    background-color: #37bc8c;
+    color: black;
+    border-color: black;
 }
