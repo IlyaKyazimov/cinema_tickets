@@ -11,37 +11,15 @@ app.use(function(req, res, next) {
     next();
   });
 
-// app.use(express.static(__dirname + '/films'))
-// app.use("/films", router)
+// parse requests of content-type - application/json
+app.use(express.json());
 
-// получаем данные для всех фильмов
-// app.get("/films", function(request, response) {
-
-//     response.sendFile('index.html', {root: __dirname })
-// })
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
 require("./back-end/routes/place.routes")(app);
-// app.use("/:movieName", router);
-
-// получаем все сеансы для выбранного фильма
-// router.get("/seances", function(request, response){
-     
-//     response.send("<h1>Seances</h1>");
-// });
- 
-// получаем места на сеансе
-// router.get("/:seanceCinema/:seanceDate/places", function(request, response){
-     
-//     response.send("<h1>Places</h1>");
-// });
- 
-// получаем данные корзины
-// app.get("/cart", function(request, response){
-     
-//     response.send("<h1>Cart</h1>");
-// });
 
 app.listen(port);
 
