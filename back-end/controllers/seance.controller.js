@@ -1,5 +1,4 @@
 const db = require("../models");
-//const Seance = db.seance;
 const Cinema = db.cinema;
 
 exports.getCinemas = (req, res) => {
