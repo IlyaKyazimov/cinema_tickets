@@ -11,6 +11,7 @@ export class PlacesComponent {
 
   seatsRows: any;
   placesInfo: any;
+  seanceId: any;
   movieName: string;
   seanceDate: string;
   seanceCinema: string;
@@ -49,7 +50,7 @@ export class PlacesComponent {
 
     this.totalSum = this.reservedAmount * this.price;
 
-    this.postPlace(seat, status, this.placesInfo).subscribe({
+    this.updatePlace(seat, status, this.placesInfo).subscribe({
       next: (data: any) => { this.receivedData = data; },
       error: error => console.log(error)
     });
@@ -57,11 +58,56 @@ export class PlacesComponent {
     seat.status = status;
   }
 
-  postPlace(seat: any, status: string, placesInfo: any) {
+  updatePlace(seat: any, status: string, placesInfo: any) {
 
-    const body = { seatId: seat.id, seatStatus: status, placesInfoId: placesInfo.id, placesInfoFree: placesInfo.free, placesInfoBusy: placesInfo.busy };
+    const body = {
+      seatId: seat.id, seatStatus: status, placesInfoId: placesInfo.id,
+      placesInfoFree: placesInfo.free, placesInfoBusy: placesInfo.busy
+    };
+
+    return this.http.put('http://localhost:3000/' + this.movieName + '/' +
+      this.seanceDate + '/' + this.seanceCinema + '/' + this.seanceTime + '/places', body);
+  }
+
+  cancelOrder() {
+
+    this.placesInfo.busy -= this.reservedAmount;
+    this.placesInfo.free += this.reservedAmount;
+    this.reservedAmount = this.totalSum = 0;
+
+    this.updateAllPlaces(this.placesInfo, this.seanceId).subscribe({
+      next: (data: any) => { this.receivedData = data; },
+      error: error => console.log(error)
+    });
+
+    const reservedSeats = document.querySelectorAll('.Reserved');
+
+    reservedSeats.forEach(reservedSeat => {
+      reservedSeat.classList.remove('Reserved');
+      reservedSeat.classList.add('Free');
+    });
+  }
+
+  updateAllPlaces(placesInfo: any, seanceId: any) {
+
+    const body = { seanceId: seanceId, placesInfoId: placesInfo.id, placesInfoFree: placesInfo.free, placesInfoBusy: placesInfo.busy };
+
     return this.http.post('http://localhost:3000/' + this.movieName + '/' +
       this.seanceDate + '/' + this.seanceCinema + '/' + this.seanceTime + '/places', body);
+  }
+
+  addToCart() {
+
+    this.createTickets(this.seatsRows, this.seanceId, this.price).subscribe({
+      next: (data: any) => { this.receivedData = data; },
+      error: error => console.log(error)
+    });
+  }
+
+  createTickets(seatsRows: any, seanceId: number, price: number) {
+
+    const body = { seatsRows: seatsRows, seanceId: seanceId, ticketPrice: price };
+    return this.http.post('http://localhost:3000/cart', body);
   }
 
   ngOnInit() {
@@ -85,6 +131,7 @@ export class PlacesComponent {
           }
 
           this.placesInfo = { id: data[0].id, free: data[0].free, busy: data[0].busy };
+          this.seanceId = data[0].seance.id;
           this.cinemaAddress = data[0].seance.cinema.address;
           this.price = data[0].seance.price;
 
