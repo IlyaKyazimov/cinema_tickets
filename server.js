@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
-const router = express.Router()
 
 // настройка CORS
 app.use(function(req, res, next) {
@@ -20,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
 require("./back-end/routes/place.routes")(app);
+require("./back-end/routes/cart.routes")(app);
 
 app.listen(port);
 
@@ -55,3 +55,9 @@ db.sequelize.sync();
 //     console.log("ok");
 //   }).catch(err=>console.log(err));
 // } 
+
+  // db.reciept.create({
+  //     totalSum: 12
+  //   }).then(res=>{
+  //     console.log("ok");
+  //   }).catch(err=>console.log(err));
