@@ -57,3 +57,33 @@ exports.updatePlace = (req, res) => {
         })
     });
 };
+
+const Order = db.order;
+
+exports.cancelOrder = (req, res) => {
+
+    db.sequelize.transaction((transaction) => {
+        return Promise.all([
+            Order.destroy({
+                where: { seanceId: req.body.seanceId }
+            }, { transaction }),
+            PlacesInfo.update({ free: req.body.placesInfoFree, busy: req.body.placesInfoBusy }, {
+                where: { id: req.body.placesInfoId }
+            }, { transaction }),
+            Place.update({ status: 'Free' }, {
+                where: { status: 'Reserved' }
+            }, { transaction })
+        ]);
+    })
+    .then(() => {
+        res.status(200).send({
+            message: "Order was canceled successfully."
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error canceling order"
+        })
+    });
+};
