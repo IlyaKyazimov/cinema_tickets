@@ -34,6 +34,8 @@ export class CartComponent implements OnInit {
       });
 
     }
+
+    window.location.reload();
   }
 
   updateAllPlaces(placesInfo: any, seanceId: number, reservedAmount: number) {

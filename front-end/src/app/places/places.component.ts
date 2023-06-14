@@ -36,6 +36,7 @@ export class PlacesComponent {
   formatSeanceTime = (time: string) => time.slice(0, -3);
 
   getPrice(seat: any) {
+
     const status = seat.status == 'Free' ? 'Reserved' : 'Free';
 
     if (status == 'Free') {
@@ -54,6 +55,9 @@ export class PlacesComponent {
       next: (data: any) => { this.receivedData = data; },
       error: error => console.log(error)
     });
+
+    let addToCartBtn = document.getElementById('addToCart');
+    this.reservedAmount > 0 ? addToCartBtn?.removeAttribute('disabled') : addToCartBtn?.setAttribute('disabled', 'true');
 
     seat.status = status;
   }
@@ -80,12 +84,7 @@ export class PlacesComponent {
       error: error => console.log(error)
     });
 
-    const reservedSeats = document.querySelectorAll('.Reserved');
-
-    reservedSeats.forEach(reservedSeat => {
-      reservedSeat.classList.remove('Reserved');
-      reservedSeat.classList.add('Free');
-    });
+    window.location.reload();
   }
 
   updateAllPlaces(placesInfo: any, seanceId: any) {
@@ -136,6 +135,9 @@ export class PlacesComponent {
           this.price = data[0].seance.price;
 
           this.reservedAmount > 0 ? this.totalSum = this.price * this.reservedAmount : this.totalSum = 0;
+
+          let addToCartBtn = document.getElementById('addToCart');
+          this.reservedAmount > 0 ? addToCartBtn?.removeAttribute('disabled') : addToCartBtn?.setAttribute('disabled', 'true');
 
           return;
         }
