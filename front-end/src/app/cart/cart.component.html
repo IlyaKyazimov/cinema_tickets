@@ -15,11 +15,11 @@
             <!-- ASIDE -->
             <aside class="col-12 col-lg-2 col-xl-2 sum">
                 <h5>Your order</h5>
-                <h3>880 ₽</h3>
+                <h3>{{ totalSum }} £</h3>
 
                 <div class="row order-btns text-center">
                     <div class="col-6 col-lg-12"><button class="btn btn-primary pay-btn">Pay</button></div>
-                    <div class="col-6 col-lg-12"><button class="btn btn-warning cancel-btn">Cancel order</button></div>
+                    <div class="col-6 col-lg-12"><button class="btn btn-warning cancel-btn" (click)="cancelOrder()">Cancel order</button></div>
                 </div>
             </aside>
             <!-- MAIN -->
@@ -27,20 +27,16 @@
                 <a href="/films" class="btn btn-primary navbar-btn all-films-btn">All filmes</a>
                 <h5>Your cart</h5>
 
-                <div class="order">
-                    <div class="order-seance-info"><b>Шрек 0+ 05.05.2023 11:40</b> «Синема парк» в ТРЦ «Европейский» пл.
-                        Киевского Вокзала, 2, Москва, 121059</div>
+                <div class="order" *ngFor="let order of orders">
+                    <div class="order-seance-info"><b>{{ order.seance.movie.name }} {{ order.seance.movie.ageRating }} {{ order.seance.date }} {{ formatSeanceTime(order.seance.time) }}</b> «{{ order.seance.cinema.name }}» at {{ order.seance.cinema.address }}</div>
                     <div class="tickets">
-                        <div class="ticket">
-                            <div class="ticket-place">Ряд 6, место 5</div>
-                            <div class="ticket-price">440 ₽</div>
-                        </div>
-                        <div class="ticket">
-                            <div class="ticket-place">Ряд 6, место 6</div>
-                            <div class="ticket-price">440 ₽</div>
+                        <div class="ticket" *ngFor="let sale of order.sales">
+                            <div class="ticket-place">Line {{ sale.ticket.line }}, seat {{ sale.ticket.number }}</div>
+                            <div class="ticket-price">{{ sale.price }} £</div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
