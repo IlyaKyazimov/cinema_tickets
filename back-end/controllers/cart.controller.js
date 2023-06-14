@@ -111,4 +111,85 @@ exports.createOrder = (req, res) => {
 
         ]);
     })
+        .then(data => {
+            console.log(data);
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating order."
+            });
+        });
 };
+
+exports.getOrders = (req, res) => {
+    Order.findAll({
+        where: { customerId: 1 },
+        include: [{
+            model: db.seance,
+            attributes: ['date', 'time'],
+            include: [{
+                model: db.movie,
+                attributes: ['name', 'ageRating']
+            }, {
+                model: db.cinema,
+                attributes: ['name', 'address']
+            }, {
+                model: db.placesInfo,
+                include: [{
+                    model: db.place,
+                    attributes: ['line', 'number', 'status']
+                }]
+            }]
+        }, {
+            association: 'sales',
+            attributes: ['price'],
+            include: [{
+                association: 'ticket',
+                attributes: ['line', 'number']
+            }]
+        }]
+    })
+        .then(data => {
+            console.log(data);
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving orders."
+            });
+        });
+}
+
+const PlacesInfo = db.placesInfo;
+const Place      = db.place;
+
+exports.cancelOrders = (req, res) => {
+
+    db.sequelize.transaction((transaction) => {
+        return Promise.all([
+            Order.destroy({
+                where: { seanceId: req.body.seanceId }
+            }, { transaction }),
+            PlacesInfo.update({ free: req.body.placesInfoFree, busy: req.body.placesInfoBusy }, {
+                where: { id: req.body.placesInfoId }
+            }, { transaction }),
+            Place.update({ status: 'Free' }, {
+                where: { status: 'Reserved' }
+            }, { transaction })
+        ]);
+    })
+    .then(() => {
+        res.status(200).send({
+            message: "Order was canceled successfully."
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error canceling order"
+        })
+    });
+}
