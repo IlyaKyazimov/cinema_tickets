@@ -11,12 +11,11 @@
                 <label>Date:</label>
                 <input type="date" name="choose-date" [(ngModel)]="date">
             </div>
-            <button class="btn btn-info navbar-btn today-btn">Today</button>
-            <button class="btn btn-info navbar-btn tomorrow-btn">Tomorrow</button>
-            <button class="btn btn-info navbar-btn weekend-btn">Weekend</button>
+            <button class="btn navbar-btn today-btn" (click)="getToday()">Today</button>
+            <button class="btn navbar-btn tomorrow-btn" (click)="getTomorrow()">Tomorrow</button>
         </div>
         <div class="col-sm-2 text-right">
-            <a href="/cart" class="btn btn-primary navbar-btn cart-btn">Cart</a>
+            <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
         </div>
     </nav>
 </header>

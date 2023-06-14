@@ -5,6 +5,15 @@
     margin-top: 1rem;
     margin-bottom: 15px;
     font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.89);
+    border: solid white 3px;
+}
+
+.all-films-btn:hover {
+    color: black;
+    background-color: #ffd25e;
+    border-color: bisque;
 }
 
 .movie-poster-description {

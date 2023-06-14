@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="col-6 text-right">
-            <a href="/cart" class="btn btn-primary navbar-btn cart-btn">Cart</a>
+            <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
         </div>
     </nav>
 </header>
@@ -22,7 +22,11 @@
 
                 <div class="row order-btns text-center">
                     <div class="col-6 col-lg-12">
-                        <a href="/cart" class="btn btn-primary add-btn" (click)="addToCart()">Add to cart</a>
+                        <a href="/cart">
+                            <button class="btn add-btn" id="addToCart" (click)="addToCart()">
+                                Add to cart
+                            </button>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-12">
                         <button class="btn btn-warning cancel-btn" (click)="cancelOrder()">Cancel order</button>
@@ -32,8 +36,10 @@
             <!-- MAIN -->
             <div class="col-12 col-lg-10 col-xl-10 main-content">
                 <div class="seance-btn-cinema-info-row">
-                    <a href="{{movieName}}/{{seanceDate}}/seances" class="btn btn-primary navbar-btn seance-btn">Seances</a>
-                    <div class="seance-info"><b>{{movieName}} 0+ {{seanceDate}} {{seanceTime}}</b> "{{seanceCinema}}", {{cinemaAddress ? cinemaAddress : ''}}</div>
+                    <a href="{{movieName}}/{{seanceDate}}/seances"
+                        class="btn btn-primary navbar-btn seance-btn">Seances</a>
+                    <div class="seance-info"><b>{{movieName}} 0+ {{seanceDate}} {{seanceTime}}</b> "{{seanceCinema}}",
+                        {{cinemaAddress ? cinemaAddress : ''}}</div>
                 </div>
 
                 <h4 class="place-selection-title">Place selection</h4>
@@ -44,7 +50,8 @@
                     <div class="places">
 
                         <div class="seats-row" *ngFor="let seatsRow of seatsRows">
-                            <button class="seat {{seat.status}}" *ngFor="let seat of seatsRow" (click)="getPrice(seat)" [disabled]="seat.status == 'Sold' ? true : false">{{seat.number}}</button>
+                            <button class="seat {{seat.status}}" *ngFor="let seat of seatsRow" (click)="getPrice(seat)"
+                                [disabled]="seat.status == 'Sold' ? true : false">{{seat.number}}</button>
                         </div>
 
                     </div>

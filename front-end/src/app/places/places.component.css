@@ -9,9 +9,24 @@
     margin-top: 15px;
 }
 
+.add-btn {
+    color: black;
+    border: solid black;
+    background-color: rgb(132, 128, 132);
+}
+
+.add-btn:hover {
+    cursor: pointer;
+    background-color: #37bc8c;
+}
+
+.add-btn[disabled] {
+    cursor: not-allowed;
+    background-color: rgb(196, 185, 185);
+}
+
 .add-btn,
 .cancel-btn {
-    color: white;
     margin-bottom: 20px;
     width: 100%;
     max-width: 18rem;
@@ -41,6 +56,15 @@
     padding: 10px 35px;
     margin-right: 20px;
     font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.89);
+    border: solid white 3px;
+}
+
+.seance-btn:hover {
+    color: black;
+    background-color: #ffd25e;
+    border-color: bisque;
 }
 
 .seance-info {

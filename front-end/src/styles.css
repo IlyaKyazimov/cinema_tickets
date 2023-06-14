@@ -16,7 +16,7 @@ body {
 
 footer {
     /* background-color: #37bc8c; */
-    background-color: #1a1919;
+    background-color: rgba(0, 0, 0, 0.89);
     color: white;
     height: 10rem;
 }
@@ -27,11 +27,11 @@ footer {
 
 header {
     height: 6rem;
-    background-color: #1a1919;
+    background-color: rgba(0, 0, 0, 0.89);
 }
 
 .navbar {
-    background-color: #1a1919;
+    background-color: rgba(0, 0, 0, 0.89);
     color: white;
     top: 0;
     height: 6rem;
@@ -60,15 +60,6 @@ header {
     width: 145px;
 }
 
-.today-btn,
-.tomorrow-btn,
-.weekend-btn {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 11px;
-    margin-bottom: 8px;
-}
-
 .range-value {
     background-color: white;
     border: solid;
@@ -95,6 +86,10 @@ header {
     float: right;
 }
 
+.btn:focus {
+    outline: none !important;
+}
+
 .filter-btns {
     justify-content: center;
 }
@@ -110,9 +105,40 @@ header {
     margin-bottom: 20px;
 }
 
+.today-btn,
+.tomorrow-btn,
+.weekend-btn {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 11px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.89);
+    border: solid white;
+}
+
+.today-btn:hover,
+.tomorrow-btn:hover,
+.weekend-btn:hover {
+    color: black;
+    background-color: #ffd25e;
+    border-color: #1a1919;
+}
+
 .cart-btn {
     padding-left: 40px;
     padding-right: 40px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.89);
+    border: solid white;
+}
+
+.cart-btn:hover {
+    color: black;
+    background-color: #ffd25e;
+    border-color: #1a1919;
 }
 
 .row-flex {
