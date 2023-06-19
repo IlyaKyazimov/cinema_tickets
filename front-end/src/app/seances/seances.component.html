@@ -30,17 +30,17 @@
                 <h5>Cinema</h5>
                 <div class="variants">
 
-                    <div class="form-check" *ngFor="let cinema of cinemasData">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">{{cinema.name}}</label>
+                    <div class="form-check" *ngFor="let cinema of cinemasNames; trackBy: trackByIdentifier">
+                        <input type="checkbox" (change)="getCheckedCinemas(cinema.name)" class="form-check-input" id="check2" name="{{ cinema.name }}" value="{{ cinema.name }}">
+                        <label class="form-check-label" for="check2">{{ cinema.name }}</label>
                     </div>
 
                 </div>
 
 
                 <div class="filter-btns">
-                    <button class="btn btn-primary apply-btn">Apply</button>
-                    <button class="btn btn-warning clear-btn">Clear</button>
+                    <button class="btn btn-primary apply-btn" (click)="applyFilter()">Apply</button>
+                    <button class="btn btn-warning clear-btn" routerLink="/films" (click)="cancelFilter()">Clear</button>
                 </div>
             </aside>
             <!-- MAIN -->
