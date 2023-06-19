@@ -88,6 +88,7 @@ header {
 
 .btn:focus {
     outline: none !important;
+    box-shadow: none !important;
 }
 
 .filter-btns {
