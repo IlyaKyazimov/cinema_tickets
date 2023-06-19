@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="col-sm-7 date-btns">
-            <div class="date">
+            <div class="date" id="datepicker">
                 <label>Date:</label>
                 <input type="date" name="choose-date" [(ngModel)]="date">
             </div>
@@ -26,54 +26,34 @@
             <!-- ASIDE -->
             <aside class="col-12 col-md-3 col-xl-2">
                 <h3>Filter</h3>
+
                 <h5>Genre</h5>
                 <div class="variants">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Cartoon</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Drama</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Comedy</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Thriller</label>
+                    <div class="form-check" *ngFor="let genre of genres">
+                        <input type="checkbox" (change)="getCheckedGenres(genre)" class="form-check-input" name="{{ genre }}" value="{{ genre }}">
+                        <label class="form-check-label" for="check1">{{ genre }}</label>
                     </div>
                 </div>
+                
                 <h5>Country</h5>
                 <div class="variants">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">France</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">USA</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">United Kingdom</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                        <label class="form-check-label" for="check2">Spain</label>
+                    <div class="form-check" *ngFor="let country of countries; trackBy: trackByIdentifier">
+                        <input type="checkbox" (change)="getCheckedCountries(country.name)" class="form-check-input" name="{{ country.name }}" value="{{ country.name }}">
+                        <label class="form-check-label" for="check1">{{ country.name }}</label>
                     </div>
                 </div>
+
                 <h5>Age rating</h5>
                 <div class="age-rating">
-                    <div class="range-value">5+</div>
+                    <div class="range-value" id="range-value">5+</div>
                     <input type="range" class="age-rating-range" value="5" min="0" max="18" step="1">
                     <span class="min-range">0+</span>
                     <span class="max-range">18+</span>
                 </div>
+
                 <div class="filter-btns">
-                    <button class="btn btn-primary apply-btn">Apply</button>
-                    <button class="btn btn-warning clear-btn">Clear</button>
+                    <button class="btn btn-primary apply-btn" (click)="applyFilter()">Apply</button>
+                    <button class="btn btn-warning clear-btn" routerLink="/films" (click)="cancelFilter()">Clear</button>
                 </div>
             </aside>
             <!-- MAIN -->
