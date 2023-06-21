@@ -33,9 +33,22 @@ header {
 .navbar {
     background-color: rgba(0, 0, 0, 0.89);
     color: white;
-    top: 0;
-    height: 6rem;
-    width: 100%;
+    padding-top: 1.7rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+/* hide close when burger shown */
+.navbar-toggler.collapsed .close-icon {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    display: inline;
 }
 
 .date-btns {
@@ -44,7 +57,6 @@ header {
 
 .date {
     display: inline-block;
-    margin-right: 11px;
     font-size: 20px;
 }
 
@@ -57,33 +69,7 @@ header {
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
-    width: 145px;
-}
-
-.range-value {
-    background-color: white;
-    border: solid;
-    width: 20%;
-    text-align: center;
-    margin-bottom: 4px;
-}
-
-.age-rating-range {
-    cursor: pointer;
-    width: 100%;
-}
-
-.age-rating {
-    margin-bottom: 10px;
-}
-
-.min-range {
-    font-weight: bold;
-}
-
-.max-range {
-    font-weight: bold;
-    float: right;
+    width: 150px;
 }
 
 .btn:focus {
@@ -106,17 +92,51 @@ header {
     margin-bottom: 20px;
 }
 
+.nav-item {
+    margin-left: 10px;
+}
+
 .today-btn,
 .tomorrow-btn,
-.weekend-btn {
+.weekend-btn,
+.cart-btn {
     padding-left: 20px;
     padding-right: 20px;
-    margin-right: 11px;
-    margin-bottom: 8px;
+    margin-top: 8px;
     font-weight: bold;
     color: white;
     background-color: rgba(0, 0, 0, 0.89);
     border: solid white;
+}
+
+.cart-btn {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: 9rem;
+}
+
+@media(max-width: 991px) {
+
+    /* .date input {
+        color: black;
+        font-weight: normal;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 140px;
+    } */
+
+    .today-btn,
+    .tomorrow-btn,
+    .weekend-btn,
+    .cart-btn {
+        font-weight: bold;
+        border: solid white;
+        margin-left: 0rem;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
 }
 
 .today-btn:hover,
@@ -125,15 +145,6 @@ header {
     color: black;
     background-color: #ffd25e;
     border-color: #1a1919;
-}
-
-.cart-btn {
-    padding-left: 40px;
-    padding-right: 40px;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.89);
-    border: solid white;
 }
 
 .cart-btn:hover {
