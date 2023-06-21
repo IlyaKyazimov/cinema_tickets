@@ -1,13 +1,44 @@
 <!-- NAVIGATION MENU -->
 <header>
-    <nav class="navbar fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="col-sm-3">
+            <div class="navbar-header">
+                <div class="navbar-brand">Cinema tickets site</div>
+            </div>
+        </div>
+        <button class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+            <div class="close-icon py-1">✖</div>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsingNavbar">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="date" id="datepicker" (change)="getDate()">
+                        <label>Date:</label>
+                        <input type="date" name="choose-date" [(ngModel)]="date">
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn navbar-btn today-btn" (click)="getToday()">Today</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn navbar-btn tomorrow-btn" (click)="getTomorrow()">Tomorrow</button>
+                </li>
+                <li class="nav-item">
+                    <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+    <!-- <nav class="navbar fixed-top">
         <div class="col-sm-3">
             <div class="navbar-header">
                 <div class="navbar-brand">Cinema tickets site</div>
             </div>
         </div>
         <div class="col-sm-7 date-btns">
-            <div class="date" id="datepicker">
+            <div class="date" id="datepicker" (change)="getDate()">
                 <label>Date:</label>
                 <input type="date" name="choose-date" [(ngModel)]="date">
             </div>
@@ -17,7 +48,7 @@
         <div class="col-sm-2 text-right">
             <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
         </div>
-    </nav>
+    </nav> -->
 </header>
 <!-- MAIN CONTENT -->
 <main>
@@ -30,40 +61,49 @@
                 <h5>Genre</h5>
                 <div class="variants">
                     <div class="form-check" *ngFor="let genre of genres">
-                        <input type="checkbox" (change)="getCheckedGenres(genre)" class="form-check-input" name="{{ genre }}" value="{{ genre }}">
+                        <input type="checkbox" (change)="getCheckedGenres(genre)" class="form-check-input"
+                            name="{{ genre }}" value="{{ genre }}">
                         <label class="form-check-label" for="check1">{{ genre }}</label>
                     </div>
                 </div>
-                
+
                 <h5>Country</h5>
                 <div class="variants">
                     <div class="form-check" *ngFor="let country of countries; trackBy: trackByIdentifier">
-                        <input type="checkbox" (change)="getCheckedCountries(country.name)" class="form-check-input" name="{{ country.name }}" value="{{ country.name }}">
+                        <input type="checkbox" (change)="getCheckedCountries(country.name)" class="form-check-input"
+                            name="{{ country.name }}" value="{{ country.name }}">
                         <label class="form-check-label" for="check1">{{ country.name }}</label>
                     </div>
                 </div>
 
                 <h5>Age rating</h5>
                 <div class="age-rating">
+                    <div class="age-rating-check">
+                        <input type="checkbox" class="age-rating-check-input" (change)="switchAgeRating()"
+                            [(ngModel)]="isChecked">
+                        <label class="age-rating-check-label" for="check1">On</label>
+                    </div>
                     <div class="range-value" id="range-value">5+</div>
-                    <input type="range" class="age-rating-range" value="5" min="0" max="18" step="1">
+                    <input type="range" class="age-rating-range" id="age-rating-range" value="5" min="0" max="18"
+                        step="1" [disabled]="!isChecked">
                     <span class="min-range">0+</span>
                     <span class="max-range">18+</span>
                 </div>
 
                 <div class="filter-btns">
                     <button class="btn btn-primary apply-btn" (click)="applyFilter()">Apply</button>
-                    <button class="btn btn-warning clear-btn" routerLink="/films" (click)="cancelFilter()">Clear</button>
+                    <button class="btn btn-warning clear-btn" routerLink="/films"
+                        (click)="cancelFilter()">Clear</button>
                 </div>
             </aside>
             <!-- MAIN -->
             <div class="col-12 col-md-9 col-xl-10 main-content">
-                <h2 class="movies-date">Today at the cinema</h2>
+                <h2 class="movies-date">{{ dateTitle }} at the cinema</h2>
                 <div class="row">
                     <div *ngFor="let movie of movies" class="col-6 col-sm-6 col-md-4 col-xl-3 movie-item">
                         <a href="/{{movie.name}}/{{date}}/seances" class="card movie-card h-100">
                             <div class="card-image">
-                                <img class="card-img-top img-fluid" src="assets/movies/{{getImage(movie.name)}}.jpg"
+                                <img class="card-img-top img-fluid" src="assets/movies/{{getTitle(movie.name)}}.jpg"
                                     alt="{{movie.name}}">
                             </div>
                             <div class="card-body">

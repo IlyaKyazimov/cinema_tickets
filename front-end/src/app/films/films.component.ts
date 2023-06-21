@@ -10,27 +10,117 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FilmsComponent implements OnInit {
 
   date: any;
+  dateTitle: any;
+  today: any;
+  tomorrow: any;
   movies: any;
   countries: any;
   genres: any;
   checkedGenres: string[] = [];
   checkedCountries: string[] = [];
   ageRating: any;
+  isChecked: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
 
-  getImage = (movieName: string) => movieName.replace(/\*| |:|%|#|&|\$/g, '');
-
-  getToday() {
-    this.date = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
+    this.today = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
       new Date().toLocaleString("default", { month: "2-digit" }) + "-" +
       new Date().toLocaleString("default", { day: "2-digit" });
+
+    this.tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { year: "numeric" }) + "-" +
+      new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { month: "2-digit" }) + "-" +
+      new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { day: "2-digit" });
+  }
+
+  getTitle = (movieName: string) => movieName.replace(/\*| |:|%|#|&|\$/g, '');
+
+  getDate() {
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox instanceof HTMLInputElement) {
+        checkbox.checked = false;
+      }
+    });
+    this.checkedGenres = [];
+    this.checkedCountries = [];
+
+    this.router.navigate(['/films'])
+      .then(() => {
+
+        this.http.get('http://localhost:3000/films', { params: { date: this.date } }).subscribe({
+          next: (data: any) => {
+
+            this.movies = data[0];
+            this.countries = data[1];
+            this.genres = data[2];
+          }
+        });
+      })
+
+    if (this.date == this.today) {
+      this.dateTitle = 'Today';
+    } else if (this.date == this.tomorrow) {
+      this.dateTitle = 'Tomorrow';
+    } else {
+      this.dateTitle = 'On ' + this.date;
+    }
+  }
+
+  getToday() {
+    this.date = this.today;
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox instanceof HTMLInputElement) {
+        checkbox.checked = false;
+      }
+    });
+    this.checkedGenres = [];
+    this.checkedCountries = [];
+
+    this.router.navigate(['/films'])
+      .then(() => {
+
+        this.http.get('http://localhost:3000/films', { params: { date: this.date } }).subscribe({
+          next: (data: any) => {
+
+            this.movies = data[0];
+            this.countries = data[1];
+            this.genres = data[2];
+          }
+        });
+      })
+
+    this.dateTitle = 'Today';
   }
 
   getTomorrow() {
-    this.date = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { year: "numeric" }) + "-" +
-      new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { month: "2-digit" }) + "-" +
-      new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleString("default", { day: "2-digit" });
+    this.date = this.tomorrow;
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox instanceof HTMLInputElement) {
+        checkbox.checked = false;
+      }
+    });
+    this.checkedGenres = [];
+    this.checkedCountries = [];
+
+    this.router.navigate(['/films'])
+      .then(() => {
+
+        this.http.get('http://localhost:3000/films', { params: { date: this.date } }).subscribe({
+          next: (data: any) => {
+
+            this.movies = data[0];
+            this.countries = data[1];
+            this.genres = data[2];
+          }
+        });
+      })
+
+    this.dateTitle = 'Tomorrow';
   }
 
   getCheckedGenres(value: string) {
@@ -51,16 +141,18 @@ export class FilmsComponent implements OnInit {
 
   trackByIdentifier(index: number, item: any): number { return item.id }
 
-  applyFilter() {
+  switchAgeRating() {
     let rangeValue = document.getElementById('range-value');
-    if(rangeValue) this.ageRating = rangeValue.textContent?.slice(0, -1);
-    
-    this.ngOnInit();
+
+    if(this.isChecked && rangeValue) {
+      this.ageRating = rangeValue.textContent?.slice(0, -1);
+    } else {
+      this.ageRating = null;
+    }
   }
 
-  cancelFilter() { window.location.reload() }
-
-  ngOnInit() {
+  applyFilter() {
+    this.switchAgeRating();
 
     this.router.navigate(['/films'], {
       queryParams: {
@@ -73,18 +165,79 @@ export class FilmsComponent implements OnInit {
         const queryParams = this.route.snapshot.queryParams;
         const routeWithParams = this.router.createUrlTree([], { queryParams }).toString();
 
-        this.http.get('http://localhost:3000' + routeWithParams).subscribe({
+        this.http.get('http://localhost:3000' + routeWithParams, { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
             this.countries = data[1];
             this.genres = data[2];
-
-            this.date = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
-              new Date().toLocaleString("default", { month: "2-digit" }) + "-" +
-              new Date().toLocaleString("default", { day: "2-digit" });
           }
         });
       })
+  }
+
+  cancelFilter() {
+    //window.location.reload()
+    this.isChecked = false;
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox instanceof HTMLInputElement) {
+        checkbox.checked = false;
+      }
+    });
+    this.checkedGenres = [];
+    this.checkedCountries = [];
+
+    this.router.navigate(['/films'])
+      .then(() => {
+
+        this.http.get('http://localhost:3000/films', { params: { date: this.date } }).subscribe({
+          next: (data: any) => {
+
+            this.movies = data[0];
+            this.countries = data[1];
+            this.genres = data[2];
+          }
+        });
+      })
+
+    if (this.date == this.today) {
+      this.dateTitle = 'Today';
+    } else if (this.date == this.tomorrow) {
+      this.dateTitle = 'Tomorrow';
+    } else {
+      this.dateTitle = 'On ' + this.date;
+    }
+  }
+
+  ngOnInit() {
+
+    this.date = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
+      new Date().toLocaleString("default", { month: "2-digit" }) + "-" +
+      new Date().toLocaleString("default", { day: "2-digit" });
+
+    this.router.navigate(['/films'], {
+      queryParams: {
+        genre: this.checkedGenres,
+        country: this.checkedCountries,
+        ageRating: this.ageRating
+      }
+    })
+      .then(() => {
+        const queryParams = this.route.snapshot.queryParams;
+        const routeWithParams = this.router.createUrlTree([], { queryParams }).toString();
+
+        this.http.get('http://localhost:3000' + routeWithParams, { params: { date: this.date } }).subscribe({
+          next: (data: any) => {
+
+            this.movies = data[0];
+            this.countries = data[1];
+            this.genres = data[2];
+          }
+        });
+      })
+
+    this.dateTitle = 'Today';
   }
 }
