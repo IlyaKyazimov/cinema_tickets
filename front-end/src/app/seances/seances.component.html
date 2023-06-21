@@ -1,24 +1,53 @@
 <!-- NAVIGATION MENU -->
 <header>
-    <nav class="navbar fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="col-sm-3">
+            <div class="navbar-header">
+                <div class="navbar-brand">Cinema tickets site</div>
+            </div>
+        </div>
+        <button class="navbar-toggler collapsed border-0" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+            <div class="close-icon py-1">✖</div>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsingNavbar">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="date" id="datepicker" (change)="getDate()">
+                        <label>Date:</label>
+                        <input type="date" name="choose-date" [(ngModel)]="seanceDate">
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn navbar-btn today-btn" (click)="getToday()">Today</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn navbar-btn tomorrow-btn" (click)="getTomorrow()">Tomorrow</button>
+                </li>
+                <li class="nav-item">
+                    <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+    <!-- <nav class="navbar fixed-top">
         <div class="col-sm-3">
             <div class="navbar-header">
                 <div class="navbar-brand">Cinema tickets site</div>
             </div>
         </div>
         <div class="col-sm-7 date-btns">
-            <div class="date">
+            <div class="date" id="datepicker" (change)="getDate()">
                 <label>Date:</label>
                 <input type="date" name="choose-date" [(ngModel)]="seanceDate">
             </div>
-            <button class="btn btn-info navbar-btn today-btn">Today</button>
-            <button class="btn btn-info navbar-btn tomorrow-btn">Tomorrow</button>
-            <button class="btn btn-info navbar-btn weekend-btn">Weekend</button>
+            <button class="btn navbar-btn today-btn" (click)="getToday()">Today</button>
+            <button class="btn navbar-btn tomorrow-btn" (click)="getTomorrow()">Tomorrow</button>
         </div>
         <div class="col-sm-2 text-right">
             <a href="/cart" class="btn navbar-btn cart-btn">Cart</a>
         </div>
-    </nav>
+    </nav> -->
 </header>
 <!-- MAIN CONTENT -->
 <main>
@@ -54,7 +83,7 @@
                     </div>
                     <div class="col-md-9">
                         <h4>Сеансы фильма {{movieName}} на {{seanceDate}}</h4>
-                        <div class="movie-description">{{cinemasData ? cinemasData[0].seances[0].movie.description : ""}}
+                        <div class="movie-description">{{description ? description : ""}}
                         </div>
                     </div>
                 </div>
@@ -63,7 +92,7 @@
                     <div class="cinema" *ngFor="let cinema of cinemasData">
                         <div class="cinema-info">"{{cinema.name}}", {{cinema.address}}</div>
                         <div class="price-btns text-center">
-                            <a href="{{movieName}}/{{seanceDate}}/{{cinema.name}}/{{formatSeanceTime(seance.time)}}/places" *ngFor="let seance of cinema.seances" class="btn price-btn">
+                            <a [href]="createUrl(movieName, seanceDate, cinema.name, seance.time)" *ngFor="let seance of cinema.seances" class="btn price-btn">
                                 <span class="time">{{formatSeanceTime(seance.time)}}</span>
                                 <span class="price">{{seance.price}} £</span>
                             </a>
