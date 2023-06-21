@@ -3,12 +3,12 @@ const app = express()
 const port = process.env.PORT || 3000
 
 // настройка CORS
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-    next();
-  });
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+  next();
+});
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -33,20 +33,6 @@ const db = require("./back-end/models");
 //for RELEASE
 db.sequelize.sync();
 
-// for(let i = 0; i < 7; i++) {
-//   db.seance.create({
-//       date: new Date(2023, 5, 2),
-//       time: "22:10",
-//       price: 300,
-//       cinemaId: i + 1,
-//       placesInfoId: i + 43, // +7
-//       movieId: 1
-//     }).then(res=>{
-//       console.log("ok");
-//     }).catch(err=>console.log(err));
-// } 
-
-// for(let i = 0; i < 35; i++) {
 //   db.placesInfo.create({
 //     total: 64,
 //     free: 64,
@@ -54,7 +40,29 @@ db.sequelize.sync();
 //   }).then(res=>{
 //     console.log("ok");
 //   }).catch(err=>console.log(err));
-// } 
+
+
+  // for (let i = 1; i < 5; i++) {
+  //   for (let j = 1; j < 17; j++) {
+  //     db.place.create({
+  //       line: i,
+  //       number: j,
+  //       status: 'Free',
+  //       placesInfoId: 64
+  //     })
+  //   }
+  // }
+
+  // db.seance.create({
+  //     date: new Date(2023, 5, 23),
+  //     time: "21:05",
+  //     price: 11,
+  //     cinemaId: 2,
+  //     placesInfoId: 73,
+  //     movieId: 1
+  //   }).then(res=>{
+  //     console.log("ok");
+  //   }).catch(err=>console.log(err));
 
   // db.reciept.create({
   //     totalSum: 12

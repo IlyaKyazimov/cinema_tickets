@@ -17,6 +17,10 @@ exports.getMovies = (req, res) => {
                     model: db.country,
                     where: countryCondition,
                     attributes: ["name"]
+                },
+                {
+                    model: db.seance,
+                    where: { date: req.query.date }
                 }],
             }, { transaction }),
             Country.findAll({ attributes: ["name"] }, { transaction }),

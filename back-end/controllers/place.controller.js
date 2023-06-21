@@ -15,6 +15,9 @@ exports.getPlaces = (req, res) => {
             include: [{
                 model: db.cinema,
                 where: { name: req.params.seanceCinema }
+            },
+            {
+                model: db.movie
             }]
         }],
         order: [['places', 'line', 'asc'], ['places', 'number', 'asc']]
@@ -45,17 +48,17 @@ exports.updatePlace = (req, res) => {
             }, { transaction })
         ]);
     })
-    .then(() => {
-        res.status(200).send({
-            message: "PlacesInfo and Place were updated successfully."
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Error updating PlacesInfo and Place"
+        .then(() => {
+            res.status(200).send({
+                message: "PlacesInfo and Place were updated successfully."
+            });
         })
-    });
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error updating PlacesInfo and Place"
+            })
+        });
 };
 
 const Order = db.order;
@@ -75,15 +78,15 @@ exports.cancelOrder = (req, res) => {
             }, { transaction })
         ]);
     })
-    .then(() => {
-        res.status(200).send({
-            message: "Order was canceled successfully."
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Error canceling order"
+        .then(() => {
+            res.status(200).send({
+                message: "Order was canceled successfully."
+            });
         })
-    });
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error canceling order"
+            })
+        });
 };
