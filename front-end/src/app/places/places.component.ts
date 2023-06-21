@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-places',
@@ -18,17 +19,22 @@ export class PlacesComponent {
   cinemaAddress!: string;
   reservedAmount: number = 0;
   price!: number;
+  movie: any;
   totalSum!: number;
   seanceTime: string;
 
   receivedData: any;
 
-  constructor(private http: HttpClient, private activateRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, private activateRoute: ActivatedRoute, public sanitizer: DomSanitizer) {
 
     this.movieName = activateRoute.snapshot.params['movieName'];
     this.seanceDate = activateRoute.snapshot.params['seanceDate'];
     this.seanceCinema = activateRoute.snapshot.params['seanceCinema'];
     this.seanceTime = activateRoute.snapshot.params['seanceTime'];
+  }
+
+  createUrl(movieName: string, seanceDate: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(movieName + '/' + seanceDate + '/seances');
   }
 
   formatTitle = (title: string) => title?.replace(/\*| |:|%|#|&|\$/g, '');
@@ -133,7 +139,7 @@ export class PlacesComponent {
           this.seanceId = data[0].seance.id;
           this.cinemaAddress = data[0].seance.cinema.address;
           this.price = data[0].seance.price;
-
+          this.movie = data[0].seance.movie;
           this.reservedAmount > 0 ? this.totalSum = this.price * this.reservedAmount : this.totalSum = 0;
 
           let addToCartBtn = document.getElementById('addToCart');

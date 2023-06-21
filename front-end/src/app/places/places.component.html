@@ -36,9 +36,9 @@
             <!-- MAIN -->
             <div class="col-12 col-lg-10 col-xl-10 main-content">
                 <div class="seance-btn-cinema-info-row">
-                    <a href="{{movieName}}/{{seanceDate}}/seances"
+                    <a [href]="createUrl(movieName, seanceDate)"
                         class="btn btn-primary navbar-btn seance-btn">Seances</a>
-                    <div class="seance-info"><b>{{movieName}} 0+ {{seanceDate}} {{seanceTime}}</b> "{{seanceCinema}}",
+                    <div class="seance-info"><b>{{ movie?.name }} {{ movie?.ageRating }} {{seanceDate}} {{seanceTime}}</b> "{{seanceCinema}}",
                         {{cinemaAddress ? cinemaAddress : ''}}</div>
                 </div>
 
