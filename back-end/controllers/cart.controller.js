@@ -177,7 +177,7 @@ exports.cancelOrders = (req, res) => {
                 where: { id: req.body.placesInfoId }
             }, { transaction }),
             Place.update({ status: 'Free' }, {
-                where: { status: 'Reserved' }
+                where: { placesInfoId: req.body.placesInfoId, status: 'Reserved' }
             }, { transaction })
         ]);
     })

@@ -177,7 +177,6 @@ export class FilmsComponent implements OnInit {
   }
 
   cancelFilter() {
-    //window.location.reload()
     this.isChecked = false;
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -212,7 +211,7 @@ export class FilmsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     this.date = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
       new Date().toLocaleString("default", { month: "2-digit" }) + "-" +
       new Date().toLocaleString("default", { day: "2-digit" });

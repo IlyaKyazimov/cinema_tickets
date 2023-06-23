@@ -15,7 +15,7 @@
                 <li class="nav-item">
                     <div class="date" id="datepicker" (change)="getDate()">
                         <label>Date:</label>
-                        <input type="date" name="choose-date" [(ngModel)]="date">
+                        <input type="date" name="choose-date" [(ngModel)]="date" min="{{ today }}">
                     </div>
                 </li>
                 <li class="nav-item">

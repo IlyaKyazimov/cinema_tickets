@@ -162,7 +162,8 @@ export class SeancesComponent implements OnInit {
           next: (data: any) => {
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            this.description = this.cinemasData[0].seances[0].movie.description;
+            if (data[0].length > 0)
+              this.description = this.cinemasData[0].seances[0].movie.description;
           }
         });
       })
