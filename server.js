@@ -26,12 +26,12 @@ app.listen(port);
 const db = require("./back-end/models");
 
 //for DEBUG database
-db.sequelize.sync({force: true}).then (() => {
-    console.log(`Drop & resync DB`);
-});
+// db.sequelize.sync({force: true}).then (() => {
+//     console.log(`Drop & resync DB`);
+// });
 
 //for RELEASE
-// db.sequelize.sync();
+db.sequelize.sync();
 
 //   db.placesInfo.create({
 //     total: 64,
