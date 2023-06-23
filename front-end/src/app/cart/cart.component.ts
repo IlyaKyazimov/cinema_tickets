@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class CartComponent implements OnInit {
   totalSum: number = 0;
   receivedData: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   formatSeanceTime = (time: string) => time.slice(0, -3);
 
@@ -24,25 +25,39 @@ export class CartComponent implements OnInit {
 
       let reservedAmount = 0;
 
-      for(let place of order.seance.placesInfo.places) {
-        if(place.status == 'Reserved') reservedAmount++;
+      for (let place of order.seance.placesInfo.places) {
+        if (place.status == 'Reserved') reservedAmount++;
       }
-      
+
       this.updateAllPlaces(order.seance.placesInfo, order.seanceId, reservedAmount).subscribe({
         next: (data: any) => { this.receivedData = data; },
         error: error => console.log(error)
       });
-
     }
 
-    window.location.reload();
+    this.router.navigate(['/cart'])
+      .then(() => {
+        this.http.get('http://localhost:3000/cart').subscribe({
+          next: (data: any) => {
+            this.orders = data;
+
+            for (let order of this.orders) {
+              for (let sale of order.sales) {
+                this.totalSum += sale.price;
+              }
+            }
+          }
+        });
+      })
   }
 
   updateAllPlaces(placesInfo: any, seanceId: number, reservedAmount: number) {
 
-    const body = { seanceId: seanceId, placesInfoId: placesInfo.id,
-       placesInfoFree: placesInfo.free + reservedAmount,
-        placesInfoBusy: placesInfo.busy - reservedAmount };
+    const body = {
+      seanceId: seanceId, placesInfoId: placesInfo.id,
+      placesInfoFree: placesInfo.free + reservedAmount,
+      placesInfoBusy: placesInfo.busy - reservedAmount
+    };
 
     return this.http.put('http://localhost:3000/cart', body);
   }
