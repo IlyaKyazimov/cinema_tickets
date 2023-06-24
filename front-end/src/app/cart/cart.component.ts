@@ -17,7 +17,38 @@ export class CartComponent implements OnInit {
 
   formatSeanceTime = (time: string) => time.slice(0, -3);
 
-  cancelOrder() {
+  payOrders() {
+
+    this.totalSum = 0;
+
+    for (let order of this.orders) {
+      this.payAllPlaces(order.seance.placesInfo, order.seanceId).subscribe({
+        next: (data: any) => { this.receivedData = data; },
+        error: error => console.log(error)
+      });
+    }
+
+    this.router.navigate(['/cart'])
+      .then(() => {
+        this.http.get('http://localhost:3000/cart').subscribe({
+          next: (data: any) => { this.orders = data }
+        });
+      })
+
+    alert('Your orders were paid successfully!');
+  }
+
+  payAllPlaces(placesInfo: any, seanceId: number) {
+
+    const body = {
+      seanceId: seanceId,
+      placesInfoId: placesInfo.id
+    };
+
+    return this.http.patch('http://localhost:3000/cart', body);
+  }
+
+  cancelOrders() {
 
     this.totalSum = 0;
 
@@ -29,7 +60,7 @@ export class CartComponent implements OnInit {
         if (place.status == 'Reserved') reservedAmount++;
       }
 
-      this.updateAllPlaces(order.seance.placesInfo, order.seanceId, reservedAmount).subscribe({
+      this.freeAllPlaces(order.seance.placesInfo, order.seanceId, reservedAmount).subscribe({
         next: (data: any) => { this.receivedData = data; },
         error: error => console.log(error)
       });
@@ -51,7 +82,7 @@ export class CartComponent implements OnInit {
       })
   }
 
-  updateAllPlaces(placesInfo: any, seanceId: number, reservedAmount: number) {
+  freeAllPlaces(placesInfo: any, seanceId: number, reservedAmount: number) {
 
     const body = {
       seanceId: seanceId, placesInfoId: placesInfo.id,
@@ -60,6 +91,21 @@ export class CartComponent implements OnInit {
     };
 
     return this.http.put('http://localhost:3000/cart', body);
+  }
+
+  cancelOrder(order: any) {
+
+    let reservedAmount = 0;
+    for (let place of order.seance.placesInfo.places) {
+      if (place.status == 'Reserved') reservedAmount++;
+    }
+
+    this.freeAllPlaces(order.seance.placesInfo, order.seanceId, reservedAmount).subscribe({
+      next: (data: any) => { this.receivedData = data; },
+      error: error => console.log(error)
+    });
+
+    window.location.reload();
   }
 
   ngOnInit() {
