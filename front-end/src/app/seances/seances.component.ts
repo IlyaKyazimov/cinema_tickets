@@ -16,6 +16,9 @@ export class SeancesComponent implements OnInit {
   movieName: string;
   seanceDate: string;
   checkedCinemas: string[] = [];
+  today: any = new Date().toLocaleString("default", { year: "numeric" }) + "-" +
+    new Date().toLocaleString("default", { month: "2-digit" }) + "-" +
+    new Date().toLocaleString("default", { day: "2-digit" });
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, public sanitizer: DomSanitizer) {
 
@@ -48,7 +51,7 @@ export class SeancesComponent implements OnInit {
 
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            this.description = this.cinemasData[0].seances[0].movie.description;
+            this.description = data[2].description;
           }
         });
       })
@@ -75,7 +78,7 @@ export class SeancesComponent implements OnInit {
 
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            this.description = this.cinemasData[0].seances[0].movie.description;
+            this.description = data[2].description;
           }
         });
       })
@@ -102,7 +105,7 @@ export class SeancesComponent implements OnInit {
 
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            this.description = this.cinemasData[0].seances[0].movie.description;
+            this.description = data[2].description;
           }
         });
       })
@@ -123,7 +126,6 @@ export class SeancesComponent implements OnInit {
   applyFilter() { this.ngOnInit() }
 
   cancelFilter() {
-    //window.location.reload()
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
@@ -141,7 +143,7 @@ export class SeancesComponent implements OnInit {
 
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            this.description = this.cinemasData[0].seances[0].movie.description;
+            this.description = data[2].description;
           }
         });
       })
@@ -162,8 +164,7 @@ export class SeancesComponent implements OnInit {
           next: (data: any) => {
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
-            if (data[0].length > 0)
-              this.description = this.cinemasData[0].seances[0].movie.description;
+            this.description = data[2].description;
           }
         });
       })

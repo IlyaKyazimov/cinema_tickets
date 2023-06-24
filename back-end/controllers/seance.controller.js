@@ -1,5 +1,6 @@
 const db = require("../models");
 const Cinema = db.cinema;
+const Movie = db.movie;
 
 exports.getCinemas = (req, res) => {
     let cinemaCondition = req.query.cinemaName ? { name: req.query.cinemaName } : null;
@@ -19,7 +20,11 @@ exports.getCinemas = (req, res) => {
                     }]
                 }]
             }, { transaction }),
-            Cinema.findAll({ attributes: ["name"] }, { transaction })
+            Cinema.findAll({ attributes: ["name"] }, { transaction }),
+            Movie.findOne({
+                where: { name: req.params.movieName },
+                attributes: ["name", "description"]
+            }, { transaction })
         ]);
     })
         .then(data => {
