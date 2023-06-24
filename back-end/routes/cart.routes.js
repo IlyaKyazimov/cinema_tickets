@@ -8,4 +8,6 @@ module.exports = app => {
     app.get("/cart", controller.getOrders);
     // Cancel orders
     app.put("/cart", controller.cancelOrders);
+    // Pay orders
+    app.patch("/cart", controller.payOrders);
 };
