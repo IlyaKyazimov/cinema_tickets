@@ -9,6 +9,7 @@
 }
 
 @media(max-width: 991px) {
+
     .pay-btn,
     .cancel-btn {
         width: 16rem;
@@ -16,6 +17,7 @@
 }
 
 @media(max-width: 720px) {
+
     .pay-btn,
     .cancel-btn {
         width: 12rem;
@@ -75,4 +77,15 @@
 .ticket-price {
     display: inline-block;
     margin-right: 20px;
+}
+
+.delete-btn {
+    border: solid black;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.delete-btn:hover {
+    background-color: red;
 }

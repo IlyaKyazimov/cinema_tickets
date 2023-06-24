@@ -1,12 +1,12 @@
 <!-- NAVIGATION MENU -->
 <header>
-<nav class="navbar fixed-top">
-    <div class="col-sm-3">
-        <div class="navbar-header">
-            <div class="navbar-brand">Cinema tickets site</div>
+    <nav class="navbar fixed-top">
+        <div class="col-sm-3">
+            <div class="navbar-header">
+                <div class="navbar-brand">Cinema tickets site</div>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
 <!-- MAIN CONTENT -->
 <main>
@@ -18,8 +18,10 @@
                 <h3>{{ totalSum }} £</h3>
 
                 <div class="row order-btns text-center">
-                    <div class="col-6 col-lg-12"><button class="btn btn-primary pay-btn">Pay</button></div>
-                    <div class="col-6 col-lg-12"><button class="btn btn-warning cancel-btn" (click)="cancelOrder()">Cancel order</button></div>
+                    <div class="col-6 col-lg-12"><button class="btn btn-primary pay-btn"
+                            (click)="payOrders()">Pay</button></div>
+                    <div class="col-6 col-lg-12"><button class="btn btn-warning cancel-btn"
+                            (click)="cancelOrders()">Cancel orders</button></div>
                 </div>
             </aside>
             <!-- MAIN -->
@@ -28,15 +30,17 @@
                 <h5>Your cart</h5>
 
                 <div class="order" *ngFor="let order of orders">
-                    <div class="order-seance-info"><b>{{ order.seance.movie.name }} {{ order.seance.movie.ageRating }} {{ order.seance.date }} {{ formatSeanceTime(order.seance.time) }}</b> «{{ order.seance.cinema.name }}» at {{ order.seance.cinema.address }}</div>
+                    <div class="order-seance-info"><b>{{ order.seance.movie.name }} {{ order.seance.movie.ageRating }}
+                            {{ order.seance.date }} {{ formatSeanceTime(order.seance.time) }}</b> «{{
+                        order.seance.cinema.name }}» at {{ order.seance.cinema.address }}</div>
                     <div class="tickets">
                         <div class="ticket" *ngFor="let sale of order.sales">
                             <div class="ticket-place">Line {{ sale.ticket.line }}, seat {{ sale.ticket.number }}</div>
                             <div class="ticket-price">{{ sale.price }} £</div>
                         </div>
                     </div>
+                    <div class="text-right"><button class="btn delete-btn" (click)="cancelOrder(order)">Delete</button></div>
                 </div>
-
             </div>
         </div>
     </div>
