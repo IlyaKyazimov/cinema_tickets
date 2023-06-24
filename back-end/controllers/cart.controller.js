@@ -8,7 +8,7 @@ exports.createOrder = (req, res) => {
 
         return Promise.all([
             Order.findOne({
-                where: { customerId: 1, seanceId: req.body.seanceId }
+                where: { customerId: 1, seanceId: req.body.seanceId, status: 'New' || 'Waiting_payment' || 'Canceled_payment' }
             }).then(order => {
 
                 if (!order) {
@@ -125,7 +125,7 @@ exports.createOrder = (req, res) => {
 
 exports.getOrders = (req, res) => {
     Order.findAll({
-        where: { customerId: 1 },
+        where: { customerId: 1, status: 'New' || 'Waiting_payment' },
         include: [{
             model: db.seance,
             attributes: ['date', 'time'],
@@ -171,7 +171,7 @@ exports.cancelOrders = (req, res) => {
     db.sequelize.transaction((transaction) => {
         return Promise.all([
             Order.destroy({
-                where: { seanceId: req.body.seanceId }
+                where: { customerId: 1, seanceId: req.body.seanceId }
             }, { transaction }),
             PlacesInfo.update({ free: req.body.placesInfoFree, busy: req.body.placesInfoBusy }, {
                 where: { id: req.body.placesInfoId }
@@ -190,6 +190,31 @@ exports.cancelOrders = (req, res) => {
         res.status(500).send({
             message:
                 err.message || "Error canceling order"
+        })
+    });
+}
+
+exports.payOrders = (req, res) => {
+
+    db.sequelize.transaction((transaction) => {
+        return Promise.all([
+            Order.update({ status: 'Paid'},{
+                where: { customerId: 1, seanceId: req.body.seanceId }
+            }, { transaction }),
+            Place.update({ status: 'Sold' }, {
+                where: { placesInfoId: req.body.placesInfoId, status: 'Reserved' }
+            }, { transaction })
+        ]);
+    })
+    .then(() => {
+        res.status(200).send({
+            message: "Order was paid successfully."
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error paying order"
         })
     });
 }
