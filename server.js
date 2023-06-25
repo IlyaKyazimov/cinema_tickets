@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
+const path = require('path')
 
 // настройка CORS
 app.use(function (req, res, next) {
@@ -16,17 +17,16 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static(__dirname + '/front-end/src'));
-// app.get('*', (req, res) => {
-//   res.sendFile(__dirname + '/front-end/src/index.html');
-// })
+app.use(express.static(path.join(__dirname, 'dist')));
 
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
 require("./back-end/routes/place.routes")(app);
 require("./back-end/routes/cart.routes")(app);
 
-app.listen(port);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 const db = require("./back-end/models");
 
