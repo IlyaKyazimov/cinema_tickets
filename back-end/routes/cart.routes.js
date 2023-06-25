@@ -1,13 +1,13 @@
 const controller = require("../controllers/cart.controller");
 
-module.exports = app => {
+module.exports = function(app) {
 
     // Creat Order
-    app.post("/cart", controller.createOrder);
+    app.post("/api/cart", controller.createOrder);
     // Get orders
-    app.get("/cart", controller.getOrders);
+    app.get("/api/cart", controller.getOrders);
     // Cancel orders
-    app.put("/cart", controller.cancelOrders);
+    app.put("/api/cart", controller.cancelOrders);
     // Pay orders
-    app.patch("/cart", controller.payOrders);
+    app.patch("/api/cart", controller.payOrders);
 };

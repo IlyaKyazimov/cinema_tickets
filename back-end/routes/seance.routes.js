@@ -1,7 +1,7 @@
 const controller = require("../controllers/seance.controller");
 
-module.exports = app => {
+module.exports = function(app) {
 
     // Retrieve Cinemas
-    app.get("/:movieName/:seanceDate/seances", controller.getCinemas); 
+    app.get("/api/:movieName/:seanceDate/seances", controller.getCinemas); 
 };

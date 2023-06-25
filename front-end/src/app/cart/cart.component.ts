@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
 
     this.router.navigate(['/cart'])
       .then(() => {
-        this.http.get('http://localhost:3000/cart').subscribe({
+        this.http.get('http://localhost:3000/api/cart').subscribe({
           next: (data: any) => { this.orders = data }
         });
       })
@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
       placesInfoId: placesInfo.id
     };
 
-    return this.http.patch('http://localhost:3000/cart', body);
+    return this.http.patch('http://localhost:3000/api/cart', body);
   }
 
   cancelOrders() {
@@ -68,7 +68,7 @@ export class CartComponent implements OnInit {
 
     this.router.navigate(['/cart'])
       .then(() => {
-        this.http.get('http://localhost:3000/cart').subscribe({
+        this.http.get('http://localhost:3000/api/cart').subscribe({
           next: (data: any) => {
             this.orders = data;
 
@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
       placesInfoBusy: placesInfo.busy - reservedAmount
     };
 
-    return this.http.put('http://localhost:3000/cart', body);
+    return this.http.put('http://localhost:3000/api/cart', body);
   }
 
   cancelOrder(order: any) {
@@ -110,7 +110,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.get('http://localhost:3000/cart').subscribe({
+    this.http.get('http://localhost:3000/api/cart').subscribe({
       next: (data: any) => {
 
         this.orders = data;

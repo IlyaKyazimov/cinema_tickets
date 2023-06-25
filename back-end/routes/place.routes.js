@@ -1,11 +1,11 @@
 const controller = require("../controllers/place.controller");
 
-module.exports = app => {
+module.exports = function(app) {
 
     // Retrieve Places
-    app.get("/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.getPlaces); 
+    app.get("/api/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.getPlaces); 
     // Update Place
-    app.put("/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.updatePlace);
+    app.put("/api/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.updatePlace);
     // Cancel order
-    app.post("/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.cancelOrder);
+    app.post("/api/:movieName/:seanceDate/:seanceCinema/:seanceTime/places", controller.cancelOrder);
 };
