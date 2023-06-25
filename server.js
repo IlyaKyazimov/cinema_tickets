@@ -17,7 +17,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
 
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
