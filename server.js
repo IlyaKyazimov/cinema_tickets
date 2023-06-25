@@ -11,18 +11,22 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // parse requests of content-type - application/json
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(__dirname, 'dist')));
-
 require("./back-end/routes/movie.routes")(app);
 require("./back-end/routes/seance.routes")(app);
 require("./back-end/routes/place.routes")(app);
 require("./back-end/routes/cart.routes")(app);
+
+app.use('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+})
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
