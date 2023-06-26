@@ -48,7 +48,7 @@ export class FilmsComponent implements OnInit {
     this.router.navigate(['/films'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/films', { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/films', { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
@@ -82,7 +82,7 @@ export class FilmsComponent implements OnInit {
     this.router.navigate(['/films'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/films', { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/films', { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
@@ -110,7 +110,7 @@ export class FilmsComponent implements OnInit {
     this.router.navigate(['/films'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/films', { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/films', { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
@@ -165,7 +165,7 @@ export class FilmsComponent implements OnInit {
         const queryParams = this.route.snapshot.queryParams;
         const routeWithParams = this.router.createUrlTree([], { queryParams }).toString();
 
-        this.http.get('http://localhost:3000/api' + routeWithParams, { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api' + routeWithParams, { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
@@ -191,7 +191,7 @@ export class FilmsComponent implements OnInit {
     this.router.navigate(['/films'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/films', { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/films', { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
@@ -227,7 +227,7 @@ export class FilmsComponent implements OnInit {
         const queryParams = this.route.snapshot.queryParams;
         const routeWithParams = this.router.createUrlTree([], { queryParams }).toString();
 
-        this.http.get('http://localhost:3000/api' + routeWithParams, { params: { date: this.date } }).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api' + routeWithParams, { params: { date: this.date } }).subscribe({
           next: (data: any) => {
 
             this.movies = data[0];
