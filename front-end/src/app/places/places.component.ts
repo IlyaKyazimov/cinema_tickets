@@ -75,7 +75,7 @@ export class PlacesComponent {
       placesInfoFree: placesInfo.free, placesInfoBusy: placesInfo.busy
     };
 
-    return this.http.put('http://localhost:3000/api/' + this.movieName + '/' +
+    return this.http.put('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' +
       this.seanceDate + '/' + this.seanceCinema + '/' + this.seanceTime + '/places', body);
   }
 
@@ -97,7 +97,7 @@ export class PlacesComponent {
 
     const body = { seanceId: seanceId, placesInfoId: placesInfo.id, placesInfoFree: placesInfo.free, placesInfoBusy: placesInfo.busy };
 
-    return this.http.post('http://localhost:3000/api/' + this.movieName + '/' +
+    return this.http.post('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' +
       this.seanceDate + '/' + this.seanceCinema + '/' + this.seanceTime + '/places', body);
   }
 
@@ -112,12 +112,12 @@ export class PlacesComponent {
   createTickets(seatsRows: any, seanceId: number, price: number) {
 
     const body = { seatsRows: seatsRows, seanceId: seanceId, ticketPrice: price };
-    return this.http.post('http://localhost:3000/api/cart', body);
+    return this.http.post('https://cinematickets-production.up.railway.app/api/cart', body);
   }
 
   ngOnInit() {
 
-    this.http.get('http://localhost:3000/api/' + this.movieName + '/' + this.seanceDate + '/' +
+    this.http.get('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' + this.seanceDate + '/' +
       this.seanceCinema + '/' + this.seanceTime + '/places').subscribe({
         next: (data: any) => {
 

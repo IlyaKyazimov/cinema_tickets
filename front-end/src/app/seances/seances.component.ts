@@ -46,7 +46,7 @@ export class SeancesComponent implements OnInit {
     this.router.navigate([this.movieName, this.seanceDate, 'seances'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
           next: (data: any) => {
 
             this.cinemasData = data[0];
@@ -73,7 +73,7 @@ export class SeancesComponent implements OnInit {
     this.router.navigate([this.movieName, this.seanceDate, 'seances'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
           next: (data: any) => {
 
             this.cinemasData = data[0];
@@ -100,7 +100,7 @@ export class SeancesComponent implements OnInit {
     this.router.navigate([this.movieName, this.seanceDate, 'seances'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
           next: (data: any) => {
 
             this.cinemasData = data[0];
@@ -138,7 +138,7 @@ export class SeancesComponent implements OnInit {
     this.router.navigate([this.movieName, this.seanceDate, 'seances'])
       .then(() => {
 
-        this.http.get('http://localhost:3000/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api/' + this.movieName + '/' + this.seanceDate + '/seances').subscribe({
           next: (data: any) => {
 
             this.cinemasData = data[0];
@@ -160,7 +160,7 @@ export class SeancesComponent implements OnInit {
         const queryParams = this.route.snapshot.queryParams;
         const routeWithParams = this.router.createUrlTree([], { queryParams }).toString();
 
-        this.http.get('http://localhost:3000/api' + routeWithParams).subscribe({
+        this.http.get('https://cinematickets-production.up.railway.app/api' + routeWithParams).subscribe({
           next: (data: any) => {
             this.cinemasData = data[0];
             this.cinemasNames = data[1];
